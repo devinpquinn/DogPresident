@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using NaughtyAttributes;
 
 [CreateAssetMenu(fileName = "NewScenario", menuName = "DogPresident/Scenario", order = 0)]
 public class Scenario : ScriptableObject
@@ -19,14 +18,7 @@ public class Response
 
     public ApprovalRatingEffect approvalEffect = ApprovalRatingEffect.NA;
 
-    [ShowIf("HasApprovalEffect")]
     public string headline;
-
-    // This method is used by NaughtyAttributes to determine whether to show the headline
-    public bool HasApprovalEffect()
-    {
-        return approvalEffect != ApprovalRatingEffect.NA;
-    }
 }
 
 public enum ApprovalRatingEffect
