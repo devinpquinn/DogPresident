@@ -92,6 +92,9 @@ public class PawManager : MonoBehaviour
             childArm.localScale = Vector3.Lerp(childArm.localScale, windupScale, slamSpeed * Time.deltaTime);
             yield return null;
         }
+        // Ensure exact values after windup
+        childArm.localPosition = windupPosition;
+        childArm.localScale = windupScale;
 
         // Lerp the child arm to local position zero (slam position) and scale down to 1
         Vector3 slamPosition = Vector3.zero;
@@ -102,6 +105,9 @@ public class PawManager : MonoBehaviour
             childArm.localScale = Vector3.Lerp(childArm.localScale, slamScale, slamSpeed * Time.deltaTime);
             yield return null;
         }
+        // Ensure exact values after slam
+        childArm.localPosition = slamPosition;
+        childArm.localScale = slamScale;
 
         // Hold the slam position for a moment
         yield return new WaitForSeconds(slamHoldTime);
@@ -114,6 +120,9 @@ public class PawManager : MonoBehaviour
             childArm.localScale = Vector3.Lerp(childArm.localScale, initialScale, slamSpeed * Time.deltaTime);
             yield return null;
         }
+        // Ensure exact values after returning to initial position
+        childArm.localPosition = initialLocalPosition;
+        childArm.localScale = initialScale;
 
         // Reset state
         isSlamming = false;
