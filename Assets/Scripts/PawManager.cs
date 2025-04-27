@@ -61,10 +61,8 @@ public class PawManager : MonoBehaviour
             // Lerp the paw to the rest position and rest rotation when not live
             transform.position = Vector3.Lerp(transform.position, restPosition, lerpSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, lerpSpeed * Time.deltaTime);
-            return;
         }
-
-        if (isMovingToClick)
+        else if (isMovingToClick)
         {
             // Move towards the clicked position
             transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
@@ -75,20 +73,18 @@ public class PawManager : MonoBehaviour
                 isMovingToClick = false;
                 StartCoroutine(Slam());
             }
-            return;
         }
-
-        // Get mouse position in world space
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f; // Ensure Z is 0 for 2D
-
-        // Clamp the Y position to the maximum allowed value
-        targetPosition = mousePosition;
-        targetPosition.y = Mathf.Min(targetPosition.y, maxY);
-
-        // Lerp the object's position towards the target position
-        if (isTracking)
+        else if (isTracking)
         {
+            // Get mouse position in world space
+            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f; // Ensure Z is 0 for 2D
+
+            // Clamp the Y position to the maximum allowed value
+            targetPosition = mousePosition;
+            targetPosition.y = Mathf.Min(targetPosition.y, maxY);
+
+            // Lerp the object's position towards the target position
             transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
 
             // Calculate rotation based on horizontal distance to the mouse
@@ -101,14 +97,14 @@ public class PawManager : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         }
 
-        // Check for mouse click to initiate slam
-        if (Input.GetMouseButtonDown(0))
+        // Check for left-click to initiate slam
+        if (Input.GetMouseButtonDown(0) && !isSlamming)
         {
             isMovingToClick = true;
-            isTracking = false;
+            isTracking = false; // Temporarily disable tracking during the slam
         }
 
-        // Parallax effect
+        // Parallax effect (always active)
         if (backgroundRect != null)
         {
             // Get the normalized horizontal position of the cursor (-1 to 1)
@@ -170,6 +166,6 @@ public class PawManager : MonoBehaviour
 
         // Reset state
         isSlamming = false;
-        isTracking = true;
+        isTracking = true; // Re-enable tracking after the slam
     }
 }
