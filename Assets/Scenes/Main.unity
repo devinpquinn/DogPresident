@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularCarpet: {fileID: 2800000, guid: e730339b93fcd8547800f1adde48e71d, type: 3}
-  smoothedCarpet: {fileID: 2800000, guid: cdeb2d51a2376ac4cb5a189c464e0fa9, type: 3}
+  smoothedCarpet: {fileID: 2800000, guid: b4d0d3b62c993bc4f8cee934dc73d27b, type: 3}
   carpetDisplay: {fileID: 13835232}
   carpetMaterial: {fileID: 2100000, guid: ed5b90d633e6c844bb90aa4287b0bf98, type: 2}
   brushRadius: 200
