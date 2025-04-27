@@ -10,6 +10,7 @@ public class PawManager : MonoBehaviour
     public float rotationBias = 0.66f; // Bias for the middle point of no rotation (2/3 of the screen width)
     public float slamSpeed = 10f; // Speed of the slam
     public float slamHoldTime = 0.5f; // Time to hold the slam position
+    public float windupMultiplier = 1.25f; // Multiplier for the windup offset
 
     private Camera mainCamera;
     private bool isSlamming = false; // Whether the arm is currently slamming
@@ -82,7 +83,15 @@ public class PawManager : MonoBehaviour
     {
         isSlamming = true;
 
-        // Lerp the child arm to local position zero
+        // Windup: Move the child arm slightly back before slamming
+        Vector3 windupPosition = initialLocalPosition * windupMultiplier; // Use the windup multiplier
+        while (Vector3.Distance(childArm.localPosition, windupPosition) > 0.01f)
+        {
+            childArm.localPosition = Vector3.Lerp(childArm.localPosition, windupPosition, slamSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Lerp the child arm to local position zero (slam position)
         Vector3 slamPosition = Vector3.zero;
         while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f)
         {

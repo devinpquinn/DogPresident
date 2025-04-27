@@ -802,6 +802,7 @@ MonoBehaviour:
   rotationBias: 0.66
   slamSpeed: 50
   slamHoldTime: 0.1
+  windupMultiplier: 1.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
