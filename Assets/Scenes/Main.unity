@@ -514,7 +514,7 @@ MonoBehaviour:
   smoothedCarpet: {fileID: 2800000, guid: b4d0d3b62c993bc4f8cee934dc73d27b, type: 3}
   carpetDisplay: {fileID: 13835232}
   carpetMaterial: {fileID: 2100000, guid: ed5b90d633e6c844bb90aa4287b0bf98, type: 2}
-  brushRadius: 200
+  brushRadius: 64
 --- !u!4 &894154767
 Transform:
   m_ObjectHideFlags: 0

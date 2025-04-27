@@ -76,7 +76,17 @@ public class FancyCarpetSmoother : MonoBehaviour
                     float dist = Mathf.Sqrt(x * x + y * y);
                     if (dist <= brushRadius)
                     {
-                        float brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - (dist / brushRadius)), 2f); // soft falloff
+                        float brushAlpha;
+                        float normalizedDist = dist / brushRadius;
+                        if (normalizedDist <= 0.2f)
+                        {
+                            brushAlpha = 1f;
+                        }
+                        else
+                        {
+                            float falloff = (normalizedDist - 0.75f) / 0.25f; // Taper over the last 25%
+                            brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - falloff), 2f); // Soft falloff
+                        }
 
                         int idx = py * texWidth + px;
                         float finalAlpha = Mathf.Max(maskPixels[idx].r, brushAlpha);
