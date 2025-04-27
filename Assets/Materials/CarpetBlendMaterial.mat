@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SmoothTex:
-        m_Texture: {fileID: 2800000, guid: cdeb2d51a2376ac4cb5a189c464e0fa9, type: 3}
+        m_Texture: {fileID: 2800000, guid: b4d0d3b62c993bc4f8cee934dc73d27b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
