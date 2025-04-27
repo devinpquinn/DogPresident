@@ -120,7 +120,7 @@ public class PawManager : MonoBehaviour
             backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
 
             // Apply a parallax effect to the child paw's global X offset relative to its base offset
-            float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.1f); // Adjust the multiplier for subtle movement
+            float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.05f); // Adjust the multiplier for subtle movement
 
             // Transform the local base offset to global space
             Vector3 baseGlobalPosition = transform.TransformPoint(initialLocalPosition);
