@@ -68,29 +68,30 @@ public class FancyCarpetSmoother : MonoBehaviour
     }
 
     void DrawSoftCircleOnMask(Vector2 uv)
-    {
-        int centerX = (int)(uv.x * maskTexture.width);
-        int centerY = (int)(uv.y * maskTexture.height);
+{
+    int centerX = (int)(uv.x * maskTexture.width);
+    int centerY = (int)(uv.y * maskTexture.height);
 
-        for (int y = -brushRadius; y <= brushRadius; y++)
+    for (int y = -brushRadius; y <= brushRadius; y++)
+    {
+        for (int x = -brushRadius; x <= brushRadius; x++)
         {
-            for (int x = -brushRadius; x <= brushRadius; x++)
+            int px = centerX + x;
+            int py = centerY + y;
+            if (px >= 0 && px < maskTexture.width && py >= 0 && py < maskTexture.height)
             {
-                int px = centerX + x;
-                int py = centerY + y;
-                if (px >= 0 && px < maskTexture.width && py >= 0 && py < maskTexture.height)
+                float dist = Mathf.Sqrt(x * x + y * y);
+                if (dist <= brushRadius)
                 {
-                    float dist = Mathf.Sqrt(x * x + y * y);
-                    if (dist <= brushRadius)
-                    {
-                        float alpha = Mathf.Clamp01(1f - (dist / brushRadius)); // 1 at center, 0 at edge
-                        Color existing = maskTexture.GetPixel(px, py);
-                        float newAlpha = Mathf.Clamp01(existing.r + alpha * 0.5f); // slowly build up
-                        maskTexture.SetPixel(px, py, new Color(newAlpha, newAlpha, newAlpha, 1f));
-                    }
+                    float brushAlpha = Mathf.Clamp01(1f - (dist / brushRadius)); // 1 at center, 0 at edge
+                    Color existing = maskTexture.GetPixel(px, py);
+                    float finalAlpha = Mathf.Max(existing.r, brushAlpha); // take maximum, no accumulation
+                    maskTexture.SetPixel(px, py, new Color(finalAlpha, finalAlpha, finalAlpha, 1f));
                 }
             }
         }
-        maskTexture.Apply();
     }
+    maskTexture.Apply();
+}
+
 }
