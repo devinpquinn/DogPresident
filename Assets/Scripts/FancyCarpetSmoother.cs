@@ -73,7 +73,10 @@ public class FancyCarpetSmoother : MonoBehaviour
 
                 if (px >= 0 && px < texWidth && py >= 0 && py < texHeight)
                 {
-                    float dist = Mathf.Sqrt(x * x + y * y);
+                    // Add randomness to the distance calculation
+                    float randomOffset = Random.Range(-10f, 10f); // Adjust range for more/less irregularity
+                    float dist = Mathf.Sqrt(x * x + y * y) + randomOffset;
+
                     if (dist <= brushRadius)
                     {
                         float brushAlpha;
@@ -87,6 +90,9 @@ public class FancyCarpetSmoother : MonoBehaviour
                             float falloff = (normalizedDist - 0.75f) / 0.25f; // Taper over the last 25%
                             brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - falloff), 2f); // Soft falloff
                         }
+
+                        // Add randomness to the alpha for further irregularity
+                        brushAlpha *= Random.Range(0.8f, 1.2f); // Adjust range for more/less variation
 
                         int idx = py * texWidth + px;
                         float finalAlpha = Mathf.Max(maskPixels[idx].r, brushAlpha);
