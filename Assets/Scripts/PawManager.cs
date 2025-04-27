@@ -107,8 +107,10 @@ public class PawManager : MonoBehaviour
         // Parallax effect (always active)
         if (backgroundRect != null)
         {
-            // Get the normalized horizontal position of the cursor (-1 to 1)
-            float normalizedCursorX = (Input.mousePosition.x / Screen.width) * 2f - 1f;
+            // Get the normalized horizontal position of the cursor (-1 to 1), accounting for rotationBias
+            float screenWidth = Screen.width;
+            float screenMiddle = screenWidth * rotationBias; // Adjust middle point based on bias
+            float normalizedCursorX = ((Input.mousePosition.x - screenMiddle) / screenWidth) * 2f;
 
             // Calculate the target offset based on the normalized cursor position
             float targetOffsetX = normalizedCursorX * parallaxMaxOffset * -1f;
@@ -117,10 +119,10 @@ public class PawManager : MonoBehaviour
             Vector2 targetPosition = new Vector2(backgroundInitialPosition.x + targetOffsetX, backgroundInitialPosition.y);
             backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
 
-            // Apply a parallax effect to the child paw's global X offset
-            float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.2f); // Adjust the multiplier for subtle movement
+            // Apply a parallax effect to the child paw's global X offset relative to its base offset
+            float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.1f); // Adjust the multiplier for subtle movement
             Vector3 childGlobalPosition = childArm.position;
-            childGlobalPosition.x = transform.position.x + childParallaxOffset; // Offset relative to the parent
+            childGlobalPosition.x = transform.position.x + initialLocalPosition.x + childParallaxOffset; // Offset relative to the base position
             childArm.position = childGlobalPosition;
         }
     }
