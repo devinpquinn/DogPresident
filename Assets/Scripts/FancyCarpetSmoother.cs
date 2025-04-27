@@ -39,7 +39,8 @@ public class FancyCarpetSmoother : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        // only on initial mouse click, not while holding
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Input.mousePosition;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -75,7 +76,7 @@ public class FancyCarpetSmoother : MonoBehaviour
                     float dist = Mathf.Sqrt(x * x + y * y);
                     if (dist <= brushRadius)
                     {
-                        float brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - (dist / brushRadius)), 2f); // softer edges
+                        float brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - (dist / brushRadius)), 2f); // soft falloff
 
                         int idx = py * texWidth + px;
                         float finalAlpha = Mathf.Max(maskPixels[idx].r, brushAlpha);
