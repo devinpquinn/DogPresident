@@ -8,34 +8,85 @@ public class PawManager : MonoBehaviour
     public float maxY = 5f; // Maximum Y position
     public float rotationFactor = 10f; // Factor to control rotation sensitivity
     public float rotationBias = 0.66f; // Bias for the middle point of no rotation (2/3 of the screen width)
+    public float slamSpeed = 10f; // Speed of the slam
+    public float slamHoldTime = 0.5f; // Time to hold the slam position
 
     private Camera mainCamera;
+    private bool isSlamming = false; // Whether the arm is currently slamming
+    private bool isTracking = true; // Whether the arm is tracking the mouse
+    private Vector3 initialLocalPosition; // Initial local position of the child arm
+    private Transform childArm; // Reference to the child GameObject (arm sprite)
+    private Vector3 targetPosition; // Target position for tracking
 
     void Start()
     {
         mainCamera = Camera.main;
+
+        // Get the child GameObject (arm sprite) and store its initial local position
+        childArm = transform.GetChild(0);
+        initialLocalPosition = childArm.localPosition;
     }
 
     void Update()
     {
+        if (isSlamming)
+            return;
+
         // Get mouse position in world space
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f; // Ensure Z is 0 for 2D
 
         // Clamp the Y position to the maximum allowed value
-        Vector3 targetPosition = mousePosition;
+        targetPosition = mousePosition;
         targetPosition.y = Mathf.Min(targetPosition.y, maxY);
 
         // Lerp the object's position towards the target position
-        transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
+        if (isTracking)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
 
-        // Calculate rotation based on horizontal distance to the mouse
-        float screenWidth = Screen.width;
-        float screenMiddle = screenWidth * rotationBias; // Adjust middle point based on bias
-        float horizontalDistance = (Input.mousePosition.x - screenMiddle) / screenWidth;
+            // Calculate rotation based on horizontal distance to the mouse
+            float screenWidth = Screen.width;
+            float screenMiddle = screenWidth * rotationBias; // Adjust middle point based on bias
+            float horizontalDistance = (Input.mousePosition.x - screenMiddle) / screenWidth;
 
-        // Apply rotation with bias
-        float rotationZ = -horizontalDistance * rotationFactor;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+            // Apply rotation with bias
+            float rotationZ = -horizontalDistance * rotationFactor;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        }
+
+        // Check for mouse click to initiate slam
+        if (Input.GetMouseButtonDown(0) && Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            StartCoroutine(Slam());
+        }
+    }
+
+    private IEnumerator Slam()
+    {
+        isSlamming = true;
+        isTracking = false;
+
+        // Lerp the child arm to local position zero
+        Vector3 slamPosition = Vector3.zero;
+        while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f)
+        {
+            childArm.localPosition = Vector3.Lerp(childArm.localPosition, slamPosition, slamSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Hold the slam position for a moment
+        yield return new WaitForSeconds(slamHoldTime);
+
+        // Lerp the child arm back to its initial local position
+        while (Vector3.Distance(childArm.localPosition, initialLocalPosition) > 0.01f)
+        {
+            childArm.localPosition = Vector3.Lerp(childArm.localPosition, initialLocalPosition, slamSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Reset state
+        isSlamming = false;
+        isTracking = true;
     }
 }

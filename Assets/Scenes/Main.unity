@@ -800,6 +800,8 @@ MonoBehaviour:
   maxY: -3.2
   rotationFactor: 45
   rotationBias: 0.66
+  slamSpeed: 50
+  slamHoldTime: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
