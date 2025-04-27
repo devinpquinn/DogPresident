@@ -43,10 +43,16 @@ public class FancyCarpetSmoother : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Input.mousePosition;
+
+            // Get the camera rendering the canvas
+            Camera canvasCamera = carpetDisplay.canvas.renderMode == RenderMode.ScreenSpaceCamera
+                ? carpetDisplay.canvas.worldCamera
+                : null;
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 carpetDisplay.rectTransform,
                 mousePos,
-                null,
+                canvasCamera, // Pass the camera here
                 out Vector2 localPoint
             );
 
