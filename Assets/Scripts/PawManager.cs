@@ -16,6 +16,10 @@ public class PawManager : MonoBehaviour
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
     public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
 
+    public Vector3 restPosition = new Vector3(0f, -3f, 0f); // Define the rest position of the paw
+    public Quaternion restRotation = Quaternion.identity; // Define the rest rotation of the paw (default is no rotation)
+    private bool isLive = true; // Whether the paw is in live mode
+
     private Camera mainCamera;
     private bool isSlamming = false; // Whether the arm is currently slamming
     private bool isTracking = true; // Whether the arm is tracking the mouse
@@ -44,6 +48,21 @@ public class PawManager : MonoBehaviour
     {
         if (isSlamming)
             return;
+
+        // Toggle live/rest mode on right-click
+        if (Input.GetMouseButtonDown(1)) // Right mouse button
+        {
+            isLive = !isLive;
+            isTracking = isLive; // Enable/disable tracking based on live mode
+        }
+
+        if (!isLive)
+        {
+            // Lerp the paw to the rest position and rest rotation when not live
+            transform.position = Vector3.Lerp(transform.position, restPosition, lerpSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, lerpSpeed * Time.deltaTime);
+            return;
+        }
 
         if (isMovingToClick)
         {

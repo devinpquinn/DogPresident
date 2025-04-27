@@ -767,7 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpSpeed: 10
   maxY: -2.2
-  rotationFactor: 45
+  rotationFactor: 30
   rotationBias: 0.55
   slamSpeed: 50
   slamHoldTime: 0.1
@@ -775,6 +775,8 @@ MonoBehaviour:
   backgroundRect: {fileID: 13835231}
   parallaxMaxOffset: 10
   parallaxLerpSpeed: 5
+  restPosition: {x: 0.88, y: -8, z: 0}
+  restRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
