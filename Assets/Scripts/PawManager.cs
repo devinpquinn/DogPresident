@@ -110,7 +110,7 @@ public class PawManager : MonoBehaviour
             // Get the normalized horizontal position of the cursor (-1 to 1), accounting for rotationBias
             float screenWidth = Screen.width;
             float screenMiddle = screenWidth * rotationBias; // Adjust middle point based on bias
-            float normalizedCursorX = ((Input.mousePosition.x - screenMiddle) / screenWidth) * 2f;
+            float normalizedCursorX = (Input.mousePosition.x - screenMiddle) / screenWidth * 2f;
 
             // Calculate the target offset based on the normalized cursor position
             float targetOffsetX = normalizedCursorX * parallaxMaxOffset * -1f;
@@ -121,8 +121,15 @@ public class PawManager : MonoBehaviour
 
             // Apply a parallax effect to the child paw's global X offset relative to its base offset
             float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.1f); // Adjust the multiplier for subtle movement
-            Vector3 childGlobalPosition = childArm.position;
-            childGlobalPosition.x = transform.position.x + initialLocalPosition.x + childParallaxOffset; // Offset relative to the base position
+
+            // Transform the local base offset to global space
+            Vector3 baseGlobalPosition = transform.TransformPoint(initialLocalPosition);
+
+            // Apply the parallax offset to the global position
+            Vector3 childGlobalPosition = baseGlobalPosition;
+            childGlobalPosition.x += childParallaxOffset; // Add the parallax offset to the global X position
+
+            // Set the child arm's global position
             childArm.position = childGlobalPosition;
         }
     }
