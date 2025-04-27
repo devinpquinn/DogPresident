@@ -3,21 +3,33 @@ using UnityEngine.UI;
 
 public class FancyCarpetSmoother : MonoBehaviour
 {
+    [Header("Carpet Textures")]
     public Texture2D regularCarpet;
     public Texture2D smoothedCarpet;
-    public Material carpetMaterial; // Assign the material using CarpetBlend.shader
+
+    [Header("Display Settings")]
     public RawImage carpetDisplay;
-    public int brushRadius = 64;
-    public Texture2D maskTexture;
+    public Material carpetMaterial;
+
+    [Header("Brush Settings")]
+    public int brushRadius = 20;
+
+    private Texture2D maskTexture;
+    private Color[] maskPixels;
+    private int texWidth;
+    private int texHeight;
 
     void Start()
     {
-        // Create black mask
-        maskTexture = new Texture2D(regularCarpet.width, regularCarpet.height, TextureFormat.RGBA32, false);
+        texWidth = regularCarpet.width;
+        texHeight = regularCarpet.height;
+
+        maskTexture = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
         maskTexture.filterMode = FilterMode.Bilinear;
+
+        maskPixels = new Color[texWidth * texHeight];
         ClearMask();
 
-        // Assign material and textures
         carpetMaterial.SetTexture("_MainTex", regularCarpet);
         carpetMaterial.SetTexture("_SmoothTex", smoothedCarpet);
         carpetMaterial.SetTexture("_MaskTex", maskTexture);
@@ -30,68 +42,61 @@ public class FancyCarpetSmoother : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Vector2 mousePos = Input.mousePosition;
-            Vector2 uv;
-            if (ScreenPointToUV(mousePos, out uv))
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                carpetDisplay.rectTransform,
+                mousePos,
+                null,
+                out Vector2 localPoint
+            );
+
+            Vector2 uv = new Vector2(
+                (localPoint.x + carpetDisplay.rectTransform.rect.width * 0.5f) / carpetDisplay.rectTransform.rect.width,
+                (localPoint.y + carpetDisplay.rectTransform.rect.height * 0.5f) / carpetDisplay.rectTransform.rect.height
+            );
+
+            DrawSoftCircleOnMask(uv);
+        }
+    }
+
+    void DrawSoftCircleOnMask(Vector2 uv)
+    {
+        int centerX = (int)(uv.x * texWidth);
+        int centerY = (int)(uv.y * texHeight);
+
+        for (int y = -brushRadius; y <= brushRadius; y++)
+        {
+            for (int x = -brushRadius; x <= brushRadius; x++)
             {
-                DrawSoftCircleOnMask(uv);
+                int px = centerX + x;
+                int py = centerY + y;
+
+                if (px >= 0 && px < texWidth && py >= 0 && py < texHeight)
+                {
+                    float dist = Mathf.Sqrt(x * x + y * y);
+                    if (dist <= brushRadius)
+                    {
+                        float brushAlpha = Mathf.Pow(Mathf.Clamp01(1f - (dist / brushRadius)), 2f); // softer edges
+
+                        int idx = py * texWidth + px;
+                        float finalAlpha = Mathf.Max(maskPixels[idx].r, brushAlpha);
+                        maskPixels[idx] = new Color(finalAlpha, finalAlpha, finalAlpha, 1f);
+                    }
+                }
             }
         }
+
+        maskTexture.SetPixels(maskPixels);
+        maskTexture.Apply();
     }
 
     void ClearMask()
     {
-        Color clear = new Color(0, 0, 0, 1);
-        for (int y = 0; y < maskTexture.height; y++)
+        for (int i = 0; i < maskPixels.Length; i++)
         {
-            for (int x = 0; x < maskTexture.width; x++)
-            {
-                maskTexture.SetPixel(x, y, clear);
-            }
+            maskPixels[i] = new Color(0f, 0f, 0f, 1f);
         }
+
+        maskTexture.SetPixels(maskPixels);
         maskTexture.Apply();
     }
-
-    bool ScreenPointToUV(Vector2 screenPos, out Vector2 uv)
-    {
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            carpetDisplay.rectTransform, screenPos, null, out localPoint
-        );
-
-        Rect rect = carpetDisplay.rectTransform.rect;
-        uv = new Vector2(
-            Mathf.InverseLerp(rect.xMin, rect.xMax, localPoint.x),
-            Mathf.InverseLerp(rect.yMin, rect.yMax, localPoint.y)
-        );
-
-        return uv.x >= 0f && uv.x <= 1f && uv.y >= 0f && uv.y <= 1f;
-    }
-
-    void DrawSoftCircleOnMask(Vector2 uv)
-{
-    int centerX = (int)(uv.x * maskTexture.width);
-    int centerY = (int)(uv.y * maskTexture.height);
-
-    for (int y = -brushRadius; y <= brushRadius; y++)
-    {
-        for (int x = -brushRadius; x <= brushRadius; x++)
-        {
-            int px = centerX + x;
-            int py = centerY + y;
-            if (px >= 0 && px < maskTexture.width && py >= 0 && py < maskTexture.height)
-            {
-                float dist = Mathf.Sqrt(x * x + y * y);
-                if (dist <= brushRadius)
-                {
-                    float brushAlpha = Mathf.Clamp01(1f - (dist / brushRadius)); // 1 at center, 0 at edge
-                    Color existing = maskTexture.GetPixel(px, py);
-                    float finalAlpha = Mathf.Max(existing.r, brushAlpha); // take maximum, no accumulation
-                    maskTexture.SetPixel(px, py, new Color(finalAlpha, finalAlpha, finalAlpha, 1f));
-                }
-            }
-        }
-    }
-    maskTexture.Apply();
-}
-
 }
