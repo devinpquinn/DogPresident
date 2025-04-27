@@ -17,6 +17,7 @@ public class PawManager : MonoBehaviour
     private Vector3 initialLocalPosition; // Initial local position of the child arm
     private Transform childArm; // Reference to the child GameObject (arm sprite)
     private Vector3 targetPosition; // Target position for tracking
+    private bool isMovingToClick = false; // Whether the paw is moving to the clicked position
 
     void Start()
     {
@@ -31,6 +32,20 @@ public class PawManager : MonoBehaviour
     {
         if (isSlamming)
             return;
+
+        if (isMovingToClick)
+        {
+            // Move towards the clicked position
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
+
+            // Check if the paw has reached the clicked position
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            {
+                isMovingToClick = false;
+                StartCoroutine(Slam());
+            }
+            return;
+        }
 
         // Get mouse position in world space
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -56,16 +71,16 @@ public class PawManager : MonoBehaviour
         }
 
         // Check for mouse click to initiate slam
-        if (Input.GetMouseButtonDown(0) && Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(Slam());
+            isMovingToClick = true;
+            isTracking = false;
         }
     }
 
     private IEnumerator Slam()
     {
         isSlamming = true;
-        isTracking = false;
 
         // Lerp the child arm to local position zero
         Vector3 slamPosition = Vector3.zero;
