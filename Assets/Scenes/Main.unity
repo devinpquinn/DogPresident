@@ -768,7 +768,7 @@ MonoBehaviour:
   lerpSpeed: 10
   maxY: -2.9
   rotationFactor: 45
-  rotationBias: 0.66
+  rotationBias: 0.55
   slamSpeed: 50
   slamHoldTime: 0.1
   windupMultiplier: 1.1
