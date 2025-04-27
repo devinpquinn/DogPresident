@@ -116,6 +116,12 @@ public class PawManager : MonoBehaviour
             // Smoothly lerp the background's position to the target offset
             Vector2 targetPosition = new Vector2(backgroundInitialPosition.x + targetOffsetX, backgroundInitialPosition.y);
             backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
+
+            // Apply a parallax effect to the child paw's global X offset
+            float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.2f); // Adjust the multiplier for subtle movement
+            Vector3 childGlobalPosition = childArm.position;
+            childGlobalPosition.x = transform.position.x + childParallaxOffset; // Offset relative to the parent
+            childArm.position = childGlobalPosition;
         }
     }
 
@@ -123,8 +129,11 @@ public class PawManager : MonoBehaviour
     {
         isSlamming = true;
 
+        // Store the current local position of the child arm as the return position
+        Vector3 returnPosition = childArm.localPosition;
+
         // Windup: Move the child arm slightly back and scale up
-        Vector3 windupPosition = initialLocalPosition * windupMultiplier; // Use the windup multiplier
+        Vector3 windupPosition = returnPosition * windupMultiplier; // Use the windup multiplier
         Vector3 windupScale = Vector3.one * (1.1f * windupMultiplier); // Scale up during windup
         while (Vector3.Distance(childArm.localPosition, windupPosition) > 0.01f || Vector3.Distance(childArm.localScale, windupScale) > 0.01f)
         {
@@ -152,16 +161,16 @@ public class PawManager : MonoBehaviour
         // Hold the slam position for a moment
         yield return new WaitForSeconds(slamHoldTime);
 
-        // Lerp the child arm back to its initial local position and scale up to the default scale
+        // Lerp the child arm back to its return position and scale up to the default scale
         Vector3 initialScale = Vector3.one * 1.1f; // Default scale of the child arm
-        while (Vector3.Distance(childArm.localPosition, initialLocalPosition) > 0.01f || Vector3.Distance(childArm.localScale, initialScale) > 0.01f)
+        while (Vector3.Distance(childArm.localPosition, returnPosition) > 0.01f || Vector3.Distance(childArm.localScale, initialScale) > 0.01f)
         {
-            childArm.localPosition = Vector3.Lerp(childArm.localPosition, initialLocalPosition, slamSpeed * Time.deltaTime);
+            childArm.localPosition = Vector3.Lerp(childArm.localPosition, returnPosition, slamSpeed * Time.deltaTime);
             childArm.localScale = Vector3.Lerp(childArm.localScale, initialScale, slamSpeed * Time.deltaTime);
             yield return null;
         }
-        // Ensure exact values after returning to initial position
-        childArm.localPosition = initialLocalPosition;
+        // Ensure exact values after returning to the return position
+        childArm.localPosition = returnPosition;
         childArm.localScale = initialScale;
 
         // Reset state
