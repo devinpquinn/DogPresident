@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 13835233}
   - component: {fileID: 13835232}
   m_Layer: 5
-  m_Name: Carpet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,10 +154,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1538889037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.06, y: 0}
+  m_SizeDelta: {x: 2020, y: 1180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13835232
 MonoBehaviour:
@@ -772,6 +772,9 @@ MonoBehaviour:
   slamSpeed: 50
   slamHoldTime: 0.1
   windupMultiplier: 1.1
+  backgroundRect: {fileID: 13835231}
+  parallaxMaxOffset: 10
+  parallaxLerpSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -12,6 +12,10 @@ public class PawManager : MonoBehaviour
     public float slamHoldTime = 0.5f; // Time to hold the slam position
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
 
+    public RectTransform backgroundRect; // Reference to the background RectTransform
+    public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
+    public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
+
     private Camera mainCamera;
     private bool isSlamming = false; // Whether the arm is currently slamming
     private bool isTracking = true; // Whether the arm is tracking the mouse
@@ -19,6 +23,7 @@ public class PawManager : MonoBehaviour
     private Transform childArm; // Reference to the child GameObject (arm sprite)
     private Vector3 targetPosition; // Target position for tracking
     private bool isMovingToClick = false; // Whether the paw is moving to the clicked position
+    private Vector2 backgroundInitialPosition; // Store the initial position of the background
 
     void Start()
     {
@@ -27,6 +32,12 @@ public class PawManager : MonoBehaviour
         // Get the child GameObject (arm sprite) and store its initial local position
         childArm = transform.GetChild(0);
         initialLocalPosition = childArm.localPosition;
+
+        // Store the initial position of the background
+        if (backgroundRect != null)
+        {
+            backgroundInitialPosition = backgroundRect.anchoredPosition;
+        }
     }
 
     void Update()
@@ -76,6 +87,20 @@ public class PawManager : MonoBehaviour
         {
             isMovingToClick = true;
             isTracking = false;
+        }
+
+        // Parallax effect
+        if (backgroundRect != null)
+        {
+            // Get the normalized horizontal position of the cursor (-1 to 1)
+            float normalizedCursorX = (Input.mousePosition.x / Screen.width) * 2f - 1f;
+
+            // Calculate the target offset based on the normalized cursor position
+            float targetOffsetX = normalizedCursorX * parallaxMaxOffset * -1f;
+
+            // Smoothly lerp the background's position to the target offset
+            Vector2 targetPosition = new Vector2(backgroundInitialPosition.x + targetOffsetX, backgroundInitialPosition.y);
+            backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
         }
     }
 
