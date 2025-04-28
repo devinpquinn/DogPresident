@@ -977,6 +977,7 @@ MonoBehaviour:
   slamSpeed: 50
   slamHoldTime: 0.1
   windupMultiplier: 1.1
+  slamCompletionPercentage: 0.8
   backgroundRect: {fileID: 13835231}
   parallaxMaxOffset: 10
   parallaxLerpSpeed: 5

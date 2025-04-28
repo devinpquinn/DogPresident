@@ -11,6 +11,7 @@ public class PawManager : MonoBehaviour
     public float slamSpeed = 10f; // Speed of the slam
     public float slamHoldTime = 0.5f; // Time to hold the slam position
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
+    public float slamCompletionPercentageButton = 0.8f; // Percentage of the slam to complete when hitting a button
 
     public RectTransform backgroundRect; // Reference to the background RectTransform
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
@@ -167,9 +168,9 @@ public class PawManager : MonoBehaviour
         {
             if (willHitButton)
             {
-                // Calculate 80% of the way for position and scale
-                Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, 0.8f);
-                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.1f, slamScale, 0.8f);
+                // Calculate the partial slam position and scale based on the slamCompletionPercentage
+                Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, slamCompletionPercentageButton);
+                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.1f, slamScale, slamCompletionPercentageButton);
 
                 // Lerp towards the partial slam position and scale
                 childArm.localPosition = Vector3.Lerp(childArm.localPosition, partialSlamPosition, slamSpeed * Time.deltaTime);
