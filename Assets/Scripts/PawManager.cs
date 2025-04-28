@@ -167,6 +167,17 @@ public class PawManager : MonoBehaviour
         childArm.localPosition = slamPosition;
         childArm.localScale = slamScale;
 
+        // Perform raycast at the slam position
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, LayerMask.GetMask("Button"));
+        if (hit.collider != null)
+        {
+            SpriteRenderer spriteRenderer = hit.collider.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                StartCoroutine(DisableSpriteRendererTemporarily(spriteRenderer, slamHoldTime));
+            }
+        }
+
         // Hold the slam position for a moment
         yield return new WaitForSeconds(slamHoldTime);
 
@@ -185,5 +196,12 @@ public class PawManager : MonoBehaviour
         // Reset state
         isSlamming = false;
         isTracking = true; // Re-enable tracking after the slam
+    }
+
+    private IEnumerator DisableSpriteRendererTemporarily(SpriteRenderer spriteRenderer, float duration)
+    {
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.enabled = true;
     }
 }
