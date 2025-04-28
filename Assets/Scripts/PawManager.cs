@@ -154,9 +154,15 @@ public class PawManager : MonoBehaviour
         childArm.localPosition = windupPosition;
         childArm.localScale = windupScale;
 
-        // Lerp the child arm to local position zero (slam position) and scale down to 1
-        Vector3 slamPosition = Vector3.zero;
+        // Perform raycast at the start of the slam
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, LayerMask.GetMask("Button"));
+        bool willHitButton = hit.collider != null;
+
+        // Determine the slam target position based on whether a button will be hit
+        Vector3 slamPosition = willHitButton ? Vector3.zero * 0.8f : Vector3.zero; // 80% of the way down if hitting a button
         Vector3 slamScale = Vector3.one; // Scale down to 1 during the slam
+
+        // Lerp the child arm to the slam position and scale
         while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f || Vector3.Distance(childArm.localScale, slamScale) > 0.01f)
         {
             childArm.localPosition = Vector3.Lerp(childArm.localPosition, slamPosition, slamSpeed * Time.deltaTime);
@@ -167,9 +173,8 @@ public class PawManager : MonoBehaviour
         childArm.localPosition = slamPosition;
         childArm.localScale = slamScale;
 
-        // Perform raycast at the slam position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, LayerMask.GetMask("Button"));
-        if (hit.collider != null)
+        // If a button will be hit, disable its sprite renderer after the slam
+        if (willHitButton)
         {
             SpriteRenderer spriteRenderer = hit.collider.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
