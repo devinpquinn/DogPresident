@@ -159,19 +159,39 @@ public class PawManager : MonoBehaviour
         bool willHitButton = hit.collider != null;
 
         // Determine the slam target position based on whether a button will be hit
-        Vector3 slamPosition = willHitButton ? Vector3.zero * 0.8f : Vector3.zero; // 80% of the way down if hitting a button
+        Vector3 slamPosition = Vector3.zero; // 80% of the way down if hitting a button
         Vector3 slamScale = Vector3.one; // Scale down to 1 during the slam
 
         // Lerp the child arm to the slam position and scale
         while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f || Vector3.Distance(childArm.localScale, slamScale) > 0.01f)
         {
-            childArm.localPosition = Vector3.Lerp(childArm.localPosition, slamPosition, slamSpeed * Time.deltaTime);
-            childArm.localScale = Vector3.Lerp(childArm.localScale, slamScale, slamSpeed * Time.deltaTime);
+            if (willHitButton)
+            {
+                // Calculate 80% of the way for position and scale
+                Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, 0.8f);
+                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.1f, slamScale, 0.8f);
+
+                // Lerp towards the partial slam position and scale
+                childArm.localPosition = Vector3.Lerp(childArm.localPosition, partialSlamPosition, slamSpeed * Time.deltaTime);
+                childArm.localScale = Vector3.Lerp(childArm.localScale, partialSlamScale, slamSpeed * Time.deltaTime);
+
+                // Break out of the loop once close enough to the partial position and scale
+                if (Vector3.Distance(childArm.localPosition, partialSlamPosition) <= 0.01f && Vector3.Distance(childArm.localScale, partialSlamScale) <= 0.01f)
+                {
+                    childArm.localPosition = partialSlamPosition;
+                    childArm.localScale = partialSlamScale;
+                    break;
+                }
+            }
+            else
+            {
+                // Normal slam behavior
+                childArm.localPosition = Vector3.Lerp(childArm.localPosition, slamPosition, slamSpeed * Time.deltaTime);
+                childArm.localScale = Vector3.Lerp(childArm.localScale, slamScale, slamSpeed * Time.deltaTime);
+            }
+
             yield return null;
         }
-        // Ensure exact values after slam
-        childArm.localPosition = slamPosition;
-        childArm.localScale = slamScale;
 
         // If a button will be hit, disable its sprite renderer after the slam
         if (willHitButton)
