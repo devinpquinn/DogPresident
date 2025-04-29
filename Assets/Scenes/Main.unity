@@ -816,7 +816,7 @@ MonoBehaviour:
   parallaxMaxOffset: 10
   parallaxLerpSpeed: 5
   carpetHitClip: {fileID: 8300000, guid: 9e2155b9d5eccdd439fa8b17d7312923, type: 3}
-  buttonDownClip: {fileID: 8300000, guid: f02491830e42a00468597c5dd910253d, type: 3}
+  buttonDownClip: {fileID: 8300000, guid: 8da3f9c58c95aff408f0bcae723e5175, type: 3}
   buttonUpClip: {fileID: 8300000, guid: 328b431d6c3481a45b909c387342900c, type: 3}
   restPosition: {x: 0.88, y: -8, z: 0}
   restRotation: {x: 0, y: 0, z: 0, w: 1}
