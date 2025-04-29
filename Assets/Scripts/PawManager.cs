@@ -5,13 +5,14 @@ using UnityEngine;
 public class PawManager : MonoBehaviour
 {
     public float lerpSpeed = 5f; // Speed of lerping
-    public float maxY = 5f; // Maximum Y position
-    public float rotationFactor = 10f; // Factor to control rotation sensitivity
-    public float rotationBias = 0.66f; // Bias for the middle point of no rotation (2/3 of the screen width)
-    public float slamSpeed = 10f; // Speed of the slam
-    public float slamHoldTime = 0.5f; // Time to hold the slam position
+    public float maxY = -2.2f; // Maximum Y position
+    public float rotationFactor = 30f; // Factor to control rotation sensitivity
+    public float rotationBias = 0.55f; // Bias for the middle point of no rotation
+    public float slamSpeed = 50f; // Speed of the slam
+    public float slamHoldTime = 0.1f; // Time to hold the slam position
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
     public float slamCompletionPercentageButton = 0.8f; // Percentage of the slam to complete when hitting a button
+    public float buttonSlamHoldTime = 1f; // Time to hold the slam position when hitting a button
 
     public RectTransform backgroundRect; // Reference to the background RectTransform
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
@@ -200,12 +201,12 @@ public class PawManager : MonoBehaviour
             SpriteRenderer spriteRenderer = hit.collider.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
-                StartCoroutine(DisableSpriteRendererTemporarily(spriteRenderer, slamHoldTime));
+                StartCoroutine(DisableSpriteRendererTemporarily(spriteRenderer, buttonSlamHoldTime));
             }
         }
 
         // Hold the slam position for a moment
-        yield return new WaitForSeconds(slamHoldTime);
+        yield return new WaitForSeconds(willHitButton ? buttonSlamHoldTime : slamHoldTime);
 
         // Lerp the child arm back to its return position and scale up to the default scale
         Vector3 initialScale = Vector3.one * 1.1f; // Default scale of the child arm
