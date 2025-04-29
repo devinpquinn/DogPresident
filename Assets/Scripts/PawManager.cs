@@ -18,6 +18,11 @@ public class PawManager : MonoBehaviour
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
     public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
 
+    public AudioClip carpetHitClip; // Audio clip for hitting the carpet
+    public AudioClip buttonDownClip; // Audio clip for pressing a button
+    public AudioClip buttonUpClip; // Audio clip for releasing a button
+    private AudioSource audioSource; // Reference to the AudioSource component
+
     public Vector3 restPosition = new Vector3(0f, -3f, 0f); // Define the rest position of the paw
     public Quaternion restRotation = Quaternion.identity; // Define the rest rotation of the paw (default is no rotation)
     private bool isLive = true; // Whether the paw is in live mode
@@ -43,6 +48,13 @@ public class PawManager : MonoBehaviour
         if (backgroundRect != null)
         {
             backgroundInitialPosition = backgroundRect.anchoredPosition;
+        }
+
+        // Get or add an AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -195,6 +207,22 @@ public class PawManager : MonoBehaviour
             yield return null;
         }
 
+        // Play the appropriate audio clip based on whether a button was hit
+        if (willHitButton)
+        {
+            if (buttonDownClip != null)
+            {
+                audioSource.PlayOneShot(buttonDownClip);
+            }
+        }
+        else
+        {
+            if (carpetHitClip != null)
+            {
+                audioSource.PlayOneShot(carpetHitClip);
+            }
+        }
+
         // If a button will be hit, disable its sprite renderer after the slam
         if (willHitButton)
         {
@@ -207,6 +235,12 @@ public class PawManager : MonoBehaviour
 
         // Hold the slam position for a moment
         yield return new WaitForSeconds(willHitButton ? buttonSlamHoldTime : slamHoldTime);
+
+        // Play the button up clip when releasing the hold
+        if (willHitButton && buttonUpClip != null)
+        {
+            audioSource.PlayOneShot(buttonUpClip);
+        }
 
         // Lerp the child arm back to its return position and scale up to the default scale
         Vector3 initialScale = Vector3.one * 1.1f; // Default scale of the child arm
