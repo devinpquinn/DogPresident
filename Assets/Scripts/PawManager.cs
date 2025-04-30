@@ -13,6 +13,7 @@ public class PawManager : MonoBehaviour
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
     public float slamCompletionPercentageButton = 0.8f; // Percentage of the slam to complete when hitting a button
     public float buttonSlamHoldTime = 1f; // Time to hold the slam position when hitting a button
+    public float pitchVariation = 0.1f; // Amount of pitch variation
 
     public RectTransform backgroundRect; // Reference to the background RectTransform
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
@@ -212,6 +213,7 @@ public class PawManager : MonoBehaviour
         {
             if (buttonDownClip != null)
             {
+                audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
                 audioSource.PlayOneShot(buttonDownClip);
             }
         }
@@ -219,6 +221,7 @@ public class PawManager : MonoBehaviour
         {
             if (carpetHitClip != null)
             {
+                audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
                 audioSource.PlayOneShot(carpetHitClip);
             }
         }
@@ -239,6 +242,7 @@ public class PawManager : MonoBehaviour
         // Play the button up clip when releasing the hold
         if (willHitButton && buttonUpClip != null)
         {
+            audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
             audioSource.PlayOneShot(buttonUpClip);
         }
 
