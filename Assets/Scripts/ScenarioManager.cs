@@ -62,19 +62,12 @@ public class ScenarioManager : MonoBehaviour
         }
 
         Response response = currentScenario.responses[responseIndex];
-        Debug.Log("Player selected response: " + response.responseText);
+        Debug.Log("Player selected response: " + response.headline);
+        Debug.Log("Subheading: " + response.subheading);
 
         onResponsePlayed?.Invoke(response);
 
-        if (response.approvalEffect != ApprovalRatingEffect.NA)
-        {
-            Debug.Log("Headline: " + response.headline);
-            AdvanceToNextScenario();
-        }
-        else
-        {
-            Debug.Log("Scenario continues.");
-            // Do nothing; player may press another button
-        }
+        Debug.Log("Approval Effect: " + response.approvalEffect);
+        AdvanceToNextScenario();
     }
 }

@@ -13,17 +13,15 @@ public class Scenario : ScriptableObject
 [System.Serializable]
 public class Response
 {
-    [TextArea]
-    public string responseText;
-
-    public ApprovalRatingEffect approvalEffect = ApprovalRatingEffect.NA;
-
     public string headline;
+    public string subheading;
+
+    public ApprovalRatingEffect approvalEffect = ApprovalRatingEffect.Mixed;
 }
 
 public enum ApprovalRatingEffect
 {
-    NA,
+    Mixed,
     PositiveLarge,
     PositiveSmall,
     NegativeSmall,
