@@ -412,6 +412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: All Done
+      objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99999946
@@ -709,6 +713,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: Nap
+      objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9999826
@@ -935,6 +943,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: Love You
+      objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9999907
@@ -1056,6 +1068,10 @@ PrefabInstance:
     - target: {fileID: 6151396995352766774, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: Treat
       objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1442,6 +1458,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9999955
@@ -1783,6 +1803,10 @@ PrefabInstance:
     - target: {fileID: 6151396995352766774, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
+      propertyPath: m_text
+      value: Potty
       objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
