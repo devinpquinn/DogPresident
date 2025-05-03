@@ -415,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_text
-      value: All Done
+      value: Potty
       objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1612,7 +1612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_text
-      value: Play
+      value: Happy
       objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1958,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469697021296976802, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_text
-      value: Potty
+      value: Mad
       objectReference: {fileID: 0}
     - target: {fileID: 6685407138966252882, guid: 01e825e4926d20b40a760aa9b8dd846e, type: 3}
       propertyPath: m_LocalRotation.w
