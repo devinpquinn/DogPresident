@@ -521,6 +521,9 @@ MonoBehaviour:
   targetPosition: {x: 0, y: -700, z: 0}
   rotationVariance: {x: 0, y: 0, z: 10}
   lerpDuration: 1
+  folderClosed: {fileID: 1055972954}
+  folderOpen: {fileID: 1486681919}
+  waitToOpen: 0.75
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

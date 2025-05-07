@@ -13,6 +13,10 @@ public class BriefingManager : MonoBehaviour
     private Quaternion initialRotation;
     private bool isSlidingIn = false;
     private float lerpTime = 0f;
+    
+    public GameObject folderClosed;
+    public GameObject folderOpen;
+    public float waitToOpen = 0.75f;
 
     void Start()
     {
@@ -34,6 +38,10 @@ public class BriefingManager : MonoBehaviour
     private IEnumerator SlideIn()
     {
         isSlidingIn = true;
+        
+        //ensure folder is closed
+        folderClosed.SetActive(true);
+        folderOpen.SetActive(false);
 
         // Use the initial position as the start position
         Vector3 startPosition = initialPosition;
@@ -69,5 +77,10 @@ public class BriefingManager : MonoBehaviour
 
         isSlidingIn = false;
         lerpTime = 0f;
+        
+        // Wait for a moment before opening the folder
+        yield return new WaitForSeconds(waitToOpen);
+        folderClosed.SetActive(false);
+        folderOpen.SetActive(true);
     }
 }
