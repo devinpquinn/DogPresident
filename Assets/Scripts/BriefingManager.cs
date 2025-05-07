@@ -37,6 +37,13 @@ public class BriefingManager : MonoBehaviour
     {
         isSlidingIn = true;
 
+        // Apply a random x-offset to the initial position
+        Vector3 startPosition = initialPosition + new Vector3(
+            Random.Range(-positionVariance.x, positionVariance.x), 
+            0f, 
+            0f
+        );
+
         // Calculate the final target position and rotation with variance
         Vector3 finalPosition = targetPosition + new Vector3(
             Random.Range(-positionVariance.x, positionVariance.x),
@@ -59,7 +66,7 @@ public class BriefingManager : MonoBehaviour
             float easedT = Mathf.SmoothStep(0f, 1f, t);
 
             // Lerp position and rotation with easedT
-            targetRectTransform.localPosition = Vector3.Lerp(initialPosition, finalPosition, easedT);
+            targetRectTransform.localPosition = Vector3.Lerp(startPosition, finalPosition, easedT);
             targetRectTransform.localRotation = Quaternion.Lerp(initialRotation, finalRotation, easedT);
 
             yield return null;
