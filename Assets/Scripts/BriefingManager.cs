@@ -53,8 +53,8 @@ public class BriefingManager : MonoBehaviour
             lerpTime += Time.deltaTime;
             float t = lerpTime / lerpDuration;
 
-            // Apply ease-out effect using Mathf.SmoothStep
-            float easedT = Mathf.SmoothStep(0f, 1f, t);
+            // Apply a custom cubic ease-out effect
+            float easedT = 1f - Mathf.Pow(1f - t, 3f);
 
             // Lerp position and rotation with easedT
             targetRectTransform.localPosition = Vector3.Lerp(startPosition, finalPosition, easedT);
