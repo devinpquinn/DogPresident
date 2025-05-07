@@ -55,9 +55,12 @@ public class BriefingManager : MonoBehaviour
             lerpTime += Time.deltaTime;
             float t = lerpTime / lerpDuration;
 
-            // Lerp position and rotation
-            targetRectTransform.localPosition = Vector3.Lerp(initialPosition, finalPosition, t);
-            targetRectTransform.localRotation = Quaternion.Lerp(initialRotation, finalRotation, t);
+            // Apply ease-out effect using Mathf.SmoothStep
+            float easedT = Mathf.SmoothStep(0f, 1f, t);
+
+            // Lerp position and rotation with easedT
+            targetRectTransform.localPosition = Vector3.Lerp(initialPosition, finalPosition, easedT);
+            targetRectTransform.localRotation = Quaternion.Lerp(initialRotation, finalRotation, easedT);
 
             yield return null;
         }
