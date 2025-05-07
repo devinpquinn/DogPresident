@@ -6,8 +6,6 @@ public class BriefingManager : MonoBehaviour
     [Header("Slide In Settings")]
     public RectTransform targetRectTransform;
     public Vector3 targetPosition;
-    public Vector3 positionVariance;
-    public Vector3 targetRotation;
     public Vector3 rotationVariance;
     public float lerpDuration = 1.0f;
 
@@ -37,21 +35,14 @@ public class BriefingManager : MonoBehaviour
     {
         isSlidingIn = true;
 
-        // Apply a random x-offset to the initial position
-        Vector3 startPosition = initialPosition + new Vector3(
-            Random.Range(-positionVariance.x, positionVariance.x), 
-            0f, 
-            0f
-        );
+        // Use the initial position as the start position
+        Vector3 startPosition = initialPosition;
 
-        // Calculate the final target position and rotation with variance
-        Vector3 finalPosition = targetPosition + new Vector3(
-            Random.Range(-positionVariance.x, positionVariance.x),
-            Random.Range(-positionVariance.y, positionVariance.y),
-            Random.Range(-positionVariance.z, positionVariance.z)
-        );
+        // Use the target position directly as the final position
+        Vector3 finalPosition = targetPosition;
 
-        Quaternion finalRotation = Quaternion.Euler(targetRotation + new Vector3(
+        // Calculate the final target rotation with variance
+        Quaternion finalRotation = Quaternion.Euler(new Vector3(
             Random.Range(-rotationVariance.x, rotationVariance.x),
             Random.Range(-rotationVariance.y, rotationVariance.y),
             Random.Range(-rotationVariance.z, rotationVariance.z)

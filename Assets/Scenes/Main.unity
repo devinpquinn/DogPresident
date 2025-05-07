@@ -518,9 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRectTransform: {fileID: 2004401014}
-  targetPosition: {x: 0, y: -700, z: 0}
-  positionVariance: {x: 100, y: 25, z: 0}
-  targetRotation: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: -750, z: 0}
   rotationVariance: {x: 0, y: 0, z: 10}
   lerpDuration: 1
 --- !u!1 &519420028
