@@ -18,6 +18,9 @@ public class BriefingManager : MonoBehaviour
     public GameObject folderOpen;
     public float waitToOpen = 0.75f;
 
+    [Header("Audio Settings")]
+    public AudioSource slideSoundEffect; // Add this field
+
     void Start()
     {
         if (targetRectTransform != null)
@@ -38,8 +41,14 @@ public class BriefingManager : MonoBehaviour
     private IEnumerator SlideIn()
     {
         isSlidingIn = true;
-        
-        //ensure folder is closed
+
+        // Play the slide sound effect
+        if (slideSoundEffect != null)
+        {
+            slideSoundEffect.Play();
+        }
+
+        // Ensure folder is closed
         folderClosed.SetActive(true);
         folderOpen.SetActive(false);
 
@@ -77,7 +86,7 @@ public class BriefingManager : MonoBehaviour
 
         isSlidingIn = false;
         lerpTime = 0f;
-        
+
         // Wait for a moment before opening the folder
         yield return new WaitForSeconds(waitToOpen);
         folderClosed.SetActive(false);
