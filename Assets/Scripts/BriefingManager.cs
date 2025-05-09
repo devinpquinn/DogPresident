@@ -16,7 +16,8 @@ public class BriefingManager : MonoBehaviour
     
     public GameObject folderClosed;
     public GameObject folderOpen;
-    public float waitToOpen = 0.75f;
+    public float waitToStartOpen = 0.1f;
+    public float waitToDoOpen = 0.5f;
 
     [Header("Audio Settings")]
     public AudioSource audioSource; // Single AudioSource for all sounds
@@ -88,16 +89,17 @@ public class BriefingManager : MonoBehaviour
 
         isSlidingIn = false;
         lerpTime = 0f;
+        
+        yield return new WaitForSeconds(waitToStartOpen);
 
-        // Wait for a moment before opening the folder
-        yield return new WaitForSeconds(waitToOpen);
-
-        // Play a random folder open sound effect as a one-shot
+        // Play a random folder open sound effect slightly before the folder opens
         if (audioSource != null && folderOpenSoundEffects.Length > 0)
         {
             int randomIndex = Random.Range(0, folderOpenSoundEffects.Length);
             audioSource.PlayOneShot(folderOpenSoundEffects[randomIndex]);
         }
+
+        yield return new WaitForSeconds(waitToDoOpen);
 
         folderClosed.SetActive(false);
         folderOpen.SetActive(true);
