@@ -524,7 +524,9 @@ MonoBehaviour:
   folderClosed: {fileID: 1055972954}
   folderOpen: {fileID: 1486681919}
   waitToOpen: 0.1
-  slideSoundEffect: {fileID: 2004401015}
+  audioSource: {fileID: 2004401015}
+  slideSoundEffect: {fileID: 8300000, guid: a3f1d8eccfabaeb49b233ad849b1512d, type: 3}
+  folderOpenSoundEffect: {fileID: 8300000, guid: 9e2155b9d5eccdd439fa8b17d7312923, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

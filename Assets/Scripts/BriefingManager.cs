@@ -19,7 +19,9 @@ public class BriefingManager : MonoBehaviour
     public float waitToOpen = 0.75f;
 
     [Header("Audio Settings")]
-    public AudioSource slideSoundEffect; // Add this field
+    public AudioSource audioSource; // Single AudioSource for both sounds
+    public AudioClip slideSoundEffect; // Clip for sliding
+    public AudioClip folderOpenSoundEffect; // Clip for folder opening
 
     void Start()
     {
@@ -42,10 +44,10 @@ public class BriefingManager : MonoBehaviour
     {
         isSlidingIn = true;
 
-        // Play the slide sound effect
-        if (slideSoundEffect != null)
+        // Play the slide sound effect as a one-shot
+        if (audioSource != null && slideSoundEffect != null)
         {
-            slideSoundEffect.Play();
+            audioSource.PlayOneShot(slideSoundEffect);
         }
 
         // Ensure folder is closed
@@ -89,6 +91,13 @@ public class BriefingManager : MonoBehaviour
 
         // Wait for a moment before opening the folder
         yield return new WaitForSeconds(waitToOpen);
+
+        // Play the folder open sound effect as a one-shot
+        if (audioSource != null && folderOpenSoundEffect != null)
+        {
+            audioSource.PlayOneShot(folderOpenSoundEffect);
+        }
+
         folderClosed.SetActive(false);
         folderOpen.SetActive(true);
     }
