@@ -520,10 +520,10 @@ MonoBehaviour:
   targetRectTransform: {fileID: 2004401014}
   targetPosition: {x: 1154, y: 0, z: 0}
   rotationVariance: {x: 0, y: 0, z: 10}
-  lerpDuration: 1
+  lerpDuration: 0.5
   folderClosed: {fileID: 1055972954}
   folderOpen: {fileID: 1486681919}
-  waitToStartOpen: 0.1
+  waitToStartOpen: 0.5
   waitToDoOpen: 0.2
   audioSource: {fileID: 2004401015}
   slideSoundEffect: {fileID: 8300000, guid: a3f1d8eccfabaeb49b233ad849b1512d, type: 3}
