@@ -523,10 +523,14 @@ MonoBehaviour:
   lerpDuration: 1
   folderClosed: {fileID: 1055972954}
   folderOpen: {fileID: 1486681919}
-  waitToOpen: 1
+  waitToOpen: 0.1
   audioSource: {fileID: 2004401015}
   slideSoundEffect: {fileID: 8300000, guid: a3f1d8eccfabaeb49b233ad849b1512d, type: 3}
-  folderOpenSoundEffect: {fileID: 8300000, guid: 53b3ef7c73effac4381e44801a2b4395, type: 3}
+  folderOpenSoundEffects:
+  - {fileID: 8300000, guid: 53b3ef7c73effac4381e44801a2b4395, type: 3}
+  - {fileID: 8300000, guid: ed6aa98f1d2e87747834b10ba7c5d7c5, type: 3}
+  - {fileID: 8300000, guid: 0566d5a5447a579449d8a3bc3c882bc6, type: 3}
+  - {fileID: 8300000, guid: fb48395dced6d8a4e9aac82dbe43c3fe, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
