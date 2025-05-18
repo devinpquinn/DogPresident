@@ -229,11 +229,7 @@ public class PawManager : MonoBehaviour
         // If a button will be hit, disable its sprite renderer after the slam
         if (willHitButton)
         {
-            SpriteRenderer spriteRenderer = hit.collider.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                StartCoroutine(DisableSpriteRendererTemporarily(spriteRenderer, buttonSlamHoldTime));
-            }
+            StartCoroutine(DisableTemporarily(hit.collider.gameObject, buttonSlamHoldTime));
         }
 
         // Hold the slam position for a moment
@@ -263,10 +259,10 @@ public class PawManager : MonoBehaviour
         isTracking = true; // Re-enable tracking after the slam
     }
 
-    private IEnumerator DisableSpriteRendererTemporarily(SpriteRenderer spriteRenderer, float duration)
+    private IEnumerator DisableTemporarily(GameObject target, float duration)
     {
-        spriteRenderer.enabled = false;
+        target.SetActive(false);
         yield return new WaitForSeconds(duration);
-        spriteRenderer.enabled = true;
+        target.SetActive(true);
     }
 }
