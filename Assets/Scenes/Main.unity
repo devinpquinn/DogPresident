@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Headline Goes here, millions dead in fire
+  m_text: Headline goes here, consequences shown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dabaed48317738941913452d28850eb4, type: 2}
   m_sharedMaterial: {fileID: 4520708896436330415, guid: dabaed48317738941913452d28850eb4, type: 2}
