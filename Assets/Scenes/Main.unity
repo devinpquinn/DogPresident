@@ -2130,7 +2130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Approval rating up or down several percent
+  m_text: Approval rating skyrockets to 100 percent
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
   m_sharedMaterial: {fileID: 7616292967630006290, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2388,7 +2388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1535194067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2763,7 +2763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1913209709
 Transform:
   m_ObjectHideFlags: 0
