@@ -954,17 +954,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Subheading provides more context on outcome of event, experts weigh in
-    as death toll grows
+    as death toll mounts sharply
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
-  m_sharedMaterial: {fileID: -2144656087129768421, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d70fe62f352b17d4e9974187028ed44c, type: 2}
+  m_sharedMaterial: {fileID: -4446959692440590816, guid: d70fe62f352b17d4e9974187028ed44c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278848010
-  m_fontColor: {r: 0.04, g: 0.04, b: 0.04, a: 1}
+    rgba: 4281545523
+  m_fontColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -981,8 +981,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_fontSizeMin: 110
   m_fontSizeMax: 150
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2107,8 +2107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84}
-  m_SizeDelta: {x: 860, y: 152.67004}
+  m_AnchoredPosition: {x: 0, y: 75}
+  m_SizeDelta: {x: 860, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1442322722
 MonoBehaviour:
@@ -2132,8 +2132,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Approval rating up or down several percent
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
-  m_sharedMaterial: {fileID: -2144656087129768421, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
+  m_sharedMaterial: {fileID: 7616292967630006290, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2157,15 +2157,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_fontStyle: 0
+  m_HorizontalAlignment: 8
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
