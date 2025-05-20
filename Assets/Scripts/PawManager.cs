@@ -197,7 +197,7 @@ public class PawManager : MonoBehaviour
             {
                 // Calculate the partial slam position and scale based on the slamCompletionPercentage
                 Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, slamCompletionPercentageButton);
-                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.1f, slamScale, slamCompletionPercentageButton);
+                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.05f, slamScale, slamCompletionPercentageButton);
 
                 // Lerp towards the partial slam position and scale
                 childArm.localPosition = Vector3.Lerp(childArm.localPosition, partialSlamPosition, slamSpeed * Time.deltaTime);
@@ -262,7 +262,7 @@ public class PawManager : MonoBehaviour
             shadowSpriteRenderer.sprite = shadowUpSprite;
 
         // Lerp the child arm back to its return position and scale up to the default scale
-        Vector3 initialScale = Vector3.one * 1.1f; // Default scale of the child arm
+        Vector3 initialScale = Vector3.one * 1.05f; // Default scale of the child arm
         while (Vector3.Distance(childArm.localPosition, returnPosition) > 0.01f || Vector3.Distance(childArm.localScale, initialScale) > 0.01f)
         {
             childArm.localPosition = Vector3.Lerp(childArm.localPosition, returnPosition, slamSpeed * Time.deltaTime);
