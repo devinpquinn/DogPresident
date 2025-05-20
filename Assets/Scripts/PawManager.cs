@@ -24,6 +24,13 @@ public class PawManager : MonoBehaviour
     public AudioClip buttonUpClip; // Audio clip for releasing a button
     private AudioSource audioSource; // Reference to the AudioSource component
 
+    public SpriteRenderer mainSpriteRenderer; // Assign in Inspector
+    public SpriteRenderer shadowSpriteRenderer; // Assign in Inspector
+    public Sprite mainUpSprite;
+    public Sprite mainDownSprite;
+    public Sprite shadowUpSprite;
+    public Sprite shadowDownSprite;
+
     public Vector3 restPosition = new Vector3(0f, -3f, 0f); // Define the rest position of the paw
     public Quaternion restRotation = Quaternion.identity; // Define the rest rotation of the paw (default is no rotation)
     private bool isLive = true; // Whether the paw is in live mode
@@ -153,6 +160,12 @@ public class PawManager : MonoBehaviour
     {
         isSlamming = true;
 
+        // Change to "down" sprites
+        if (mainSpriteRenderer != null && mainDownSprite != null)
+            mainSpriteRenderer.sprite = mainDownSprite;
+        if (shadowSpriteRenderer != null && shadowDownSprite != null)
+            shadowSpriteRenderer.sprite = shadowDownSprite;
+
         // Store the current local position of the child arm as the return position
         Vector3 returnPosition = childArm.localPosition;
 
@@ -241,6 +254,12 @@ public class PawManager : MonoBehaviour
             audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
             audioSource.PlayOneShot(buttonUpClip);
         }
+
+        // Revert to "up" sprites
+        if (mainSpriteRenderer != null && mainUpSprite != null)
+            mainSpriteRenderer.sprite = mainUpSprite;
+        if (shadowSpriteRenderer != null && shadowUpSprite != null)
+            shadowSpriteRenderer.sprite = shadowUpSprite;
 
         // Lerp the child arm back to its return position and scale up to the default scale
         Vector3 initialScale = Vector3.one * 1.1f; // Default scale of the child arm

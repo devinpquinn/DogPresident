@@ -1935,7 +1935,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 4f8fc99a95b76f347a68ec86bbaf7ae3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3610ee5b69bfdcf4985a401b424f0ba5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2821,7 +2821,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: b24336d4e45cd184fae93a771941965c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86d311aef22630849a12af011dc87cda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_FlipX: 0
   m_FlipY: 0
@@ -2860,6 +2860,12 @@ MonoBehaviour:
   carpetHitClip: {fileID: 8300000, guid: 9e2155b9d5eccdd439fa8b17d7312923, type: 3}
   buttonDownClip: {fileID: 8300000, guid: 8da3f9c58c95aff408f0bcae723e5175, type: 3}
   buttonUpClip: {fileID: 8300000, guid: 328b431d6c3481a45b909c387342900c, type: 3}
+  mainSpriteRenderer: {fileID: 1130334335}
+  shadowSpriteRenderer: {fileID: 1913209710}
+  mainUpSprite: {fileID: 21300000, guid: 3610ee5b69bfdcf4985a401b424f0ba5, type: 3}
+  mainDownSprite: {fileID: 21300000, guid: 4f8fc99a95b76f347a68ec86bbaf7ae3, type: 3}
+  shadowUpSprite: {fileID: 21300000, guid: 86d311aef22630849a12af011dc87cda, type: 3}
+  shadowDownSprite: {fileID: 21300000, guid: b24336d4e45cd184fae93a771941965c, type: 3}
   restPosition: {x: 0.88, y: -8, z: 0}
   restRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!82 &1913209712
