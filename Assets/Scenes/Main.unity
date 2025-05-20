@@ -2849,10 +2849,10 @@ MonoBehaviour:
   rotationFactor: 30
   rotationBias: 0.55
   slamSpeed: 30
-  slamHoldTime: 0.1
+  slamHoldTime: 0.3
   windupMultiplier: 1.1
   slamCompletionPercentageButton: 0.8
-  buttonSlamHoldTime: 0.3
+  buttonSlamHoldTime: 0.5
   pitchVariation: 0.1
   backgroundRect: {fileID: 13835231}
   parallaxMaxOffset: 10
