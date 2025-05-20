@@ -2849,7 +2849,7 @@ MonoBehaviour:
   rotationFactor: 30
   rotationBias: 0.55
   slamSpeed: 30
-  slamHoldTime: 0.05
+  slamHoldTime: 0.1
   windupMultiplier: 1.1
   slamCompletionPercentageButton: 0.8
   buttonSlamHoldTime: 0.3
