@@ -160,12 +160,6 @@ public class PawManager : MonoBehaviour
     {
         isSlamming = true;
 
-        // Change to "down" sprites
-        if (mainSpriteRenderer != null && mainDownSprite != null)
-            mainSpriteRenderer.sprite = mainDownSprite;
-        if (shadowSpriteRenderer != null && shadowDownSprite != null)
-            shadowSpriteRenderer.sprite = shadowDownSprite;
-
         // Store the current local position of the child arm as the return position
         Vector3 returnPosition = childArm.localPosition;
 
@@ -189,6 +183,12 @@ public class PawManager : MonoBehaviour
         // Determine the slam target position based on whether a button will be hit
         Vector3 slamPosition = Vector3.zero; // 80% of the way down if hitting a button
         Vector3 slamScale = Vector3.one; // Scale down to 1 during the slam
+        
+        // Change to "down" sprites
+        if (mainSpriteRenderer != null && mainDownSprite != null)
+            mainSpriteRenderer.sprite = mainDownSprite;
+        if (shadowSpriteRenderer != null && shadowDownSprite != null)
+            shadowSpriteRenderer.sprite = shadowDownSprite;
 
         // Lerp the child arm to the slam position and scale
         while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f || Vector3.Distance(childArm.localScale, slamScale) > 0.01f)
