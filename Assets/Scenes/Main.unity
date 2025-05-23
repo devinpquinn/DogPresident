@@ -258,8 +258,8 @@ MonoBehaviour:
     that urgently needs your input and your canine wisdom. What is your directive?
     Use one of the buttons below to respond.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
-  m_sharedMaterial: {fileID: 2908495076013774051, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
+  m_sharedMaterial: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_fontSizeMin: 32
   m_fontSizeMax: 32
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -470,8 +470,8 @@ MonoBehaviour:
 
     01'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
-  m_sharedMaterial: {fileID: -2144656087129768421, guid: de7169e23c5d0394085d4753f30c4c75, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
+  m_sharedMaterial: {fileID: 2908495076013774051, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -495,8 +495,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59
-  m_fontSizeBase: 59
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
