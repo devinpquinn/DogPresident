@@ -77,31 +77,23 @@ public class NewspaperManager : MonoBehaviour
         while (elapsed < animationDuration)
         {
             float t = elapsed / animationDuration;
-            newspaperRect.anchoredPosition = Vector2.Lerp(initialPos, targetPos, t);
-            newspaperRect.localScale = Vector3.Lerp(initialScale, targetScale, t);
+            float easeT = t * t; // Ease-in: starts slow, accelerates
+
+            newspaperRect.anchoredPosition = Vector2.Lerp(initialPos, targetPos, easeT);
+            newspaperRect.localScale = Vector3.Lerp(initialScale, targetScale, easeT);
 
             if (shadowRect != null)
             {
-                shadowRect.localScale = Vector3.Lerp(shadowInitialScale, shadowTargetScale, t);
+                shadowRect.localScale = Vector3.Lerp(shadowInitialScale, shadowTargetScale, easeT);
                 if (shadowImage != null)
                 {
-                    Color c = Color.Lerp(shadowInitialColor, shadowTargetColor, t);
+                    Color c = Color.Lerp(shadowInitialColor, shadowTargetColor, easeT);
                     shadowImage.color = c;
                 }
             }
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
-        //randomly add a bit of rotation to the newspaper to sell the impact of landing
-        float nudgeAmount = -2f;
-        float randomRotation = randomZ >= 0 ? nudgeAmount : -nudgeAmount;
-        
-        transform.localEulerAngles = new Vector3(
-            transform.localEulerAngles.x,
-            transform.localEulerAngles.y,
-            transform.localEulerAngles.z + randomRotation
-        );
         
         newspaperRect.anchoredPosition = targetPos;
         newspaperRect.localScale = targetScale;

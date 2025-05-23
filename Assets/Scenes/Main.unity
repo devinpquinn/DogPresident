@@ -2430,7 +2430,7 @@ MonoBehaviour:
   startScale: {x: 2, y: 2, z: 1}
   startRotation: {x: 0, y: 0, z: 60}
   shadowStartScale: {x: 0.5, y: 0.5, z: 1}
-  animationDuration: 0.5
+  animationDuration: 0.6
 --- !u!1 &1538889033
 GameObject:
   m_ObjectHideFlags: 0
