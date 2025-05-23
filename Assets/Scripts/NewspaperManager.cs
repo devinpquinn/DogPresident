@@ -92,6 +92,17 @@ public class NewspaperManager : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+        
+        //randomly add a bit of rotation to the newspaper to sell the impact of landing
+        float nudgeAmount = -2f;
+        float randomRotation = randomZ >= 0 ? nudgeAmount : -nudgeAmount;
+        
+        transform.localEulerAngles = new Vector3(
+            transform.localEulerAngles.x,
+            transform.localEulerAngles.y,
+            transform.localEulerAngles.z + randomRotation
+        );
+        
         newspaperRect.anchoredPosition = targetPos;
         newspaperRect.localScale = targetScale;
         if (shadowRect != null)
