@@ -266,7 +266,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.02, g: 0.02, b: 0.02, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -468,17 +468,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'January
 
-    01'
+    ''01'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
-  m_sharedMaterial: {fileID: 2908495076013774051, guid: a443d9ac45a72e14cb97f11382840244, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
+  m_sharedMaterial: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278519045
+  m_fontColor: {r: 0.02, g: 0.02, b: 0.02, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -495,13 +495,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 76
+  m_fontSizeBase: 76
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
