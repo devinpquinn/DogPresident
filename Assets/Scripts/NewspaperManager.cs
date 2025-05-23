@@ -19,11 +19,18 @@ public class NewspaperManager : MonoBehaviour
 
     void Start()
     {
+        // Randomize this GameObject's Z rotation between -10 and 10 degrees
+        float randomZ = Random.Range(-10f, 10f);
+        transform.localEulerAngles = new Vector3(
+            transform.localEulerAngles.x,
+            transform.localEulerAngles.y,
+            randomZ
+        );
+
         if (newspaperRect != null)
         {
             newspaperRect.anchoredPosition = startOffset;
             newspaperRect.localScale = startScale;
-            newspaperRect.localEulerAngles = startRotation;
         }
         if (shadowRect != null)
         {
@@ -42,13 +49,20 @@ public class NewspaperManager : MonoBehaviour
     IEnumerator AnimateNewspaperIn()
     {
         isAnimating = true;
+
+        // Randomize this GameObject's Z rotation between -10 and 10 degrees each time animation starts
+        float randomZ = Random.Range(-10f, 10f);
+        transform.localEulerAngles = new Vector3(
+            transform.localEulerAngles.x,
+            transform.localEulerAngles.y,
+            randomZ
+        );
+
         float elapsed = 0f;
         Vector2 initialPos = startOffset;
         Vector2 targetPos = Vector2.zero;
         Vector3 initialScale = startScale;
         Vector3 targetScale = Vector3.one;
-        Vector3 initialRot = startRotation;
-        Vector3 targetRot = Vector3.zero;
         Vector3 shadowInitialScale = shadowStartScale;
         Vector3 shadowTargetScale = Vector3.one;
 
@@ -65,13 +79,10 @@ public class NewspaperManager : MonoBehaviour
             float t = elapsed / animationDuration;
             newspaperRect.anchoredPosition = Vector2.Lerp(initialPos, targetPos, t);
             newspaperRect.localScale = Vector3.Lerp(initialScale, targetScale, t);
-            Vector3 currentRot = Vector3.Lerp(initialRot, targetRot, t);
-            newspaperRect.localEulerAngles = currentRot;
 
             if (shadowRect != null)
             {
                 shadowRect.localScale = Vector3.Lerp(shadowInitialScale, shadowTargetScale, t);
-                shadowRect.localEulerAngles = currentRot;
                 if (shadowImage != null)
                 {
                     Color c = Color.Lerp(shadowInitialColor, shadowTargetColor, t);
@@ -83,11 +94,9 @@ public class NewspaperManager : MonoBehaviour
         }
         newspaperRect.anchoredPosition = targetPos;
         newspaperRect.localScale = targetScale;
-        newspaperRect.localEulerAngles = targetRot;
         if (shadowRect != null)
         {
             shadowRect.localScale = shadowTargetScale;
-            shadowRect.localEulerAngles = targetRot;
             if (shadowImage != null)
             {
                 shadowImage.color = shadowTargetColor;
