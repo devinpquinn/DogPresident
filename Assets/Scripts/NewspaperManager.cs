@@ -66,6 +66,10 @@ public class NewspaperManager : MonoBehaviour
         Vector3 shadowInitialScale = shadowStartScale;
         Vector3 shadowTargetScale = Vector3.one;
 
+        // Shadow offset is half of the newspaper offset
+        Vector2 shadowInitialPos = startOffset * 0.25f;
+        Vector2 shadowTargetPos = Vector2.zero;
+
         Image shadowImage = shadowRect != null ? shadowRect.GetComponent<Image>() : null;
         Color shadowInitialColor = shadowImage != null ? shadowImage.color : Color.black;
         shadowInitialColor.a = 0f;
@@ -84,6 +88,7 @@ public class NewspaperManager : MonoBehaviour
 
             if (shadowRect != null)
             {
+                shadowRect.anchoredPosition = Vector2.Lerp(shadowInitialPos, shadowTargetPos, easeT);
                 shadowRect.localScale = Vector3.Lerp(shadowInitialScale, shadowTargetScale, easeT);
                 if (shadowImage != null)
                 {
@@ -94,11 +99,12 @@ public class NewspaperManager : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+
         newspaperRect.anchoredPosition = targetPos;
         newspaperRect.localScale = targetScale;
         if (shadowRect != null)
         {
+            shadowRect.anchoredPosition = shadowTargetPos;
             shadowRect.localScale = shadowTargetScale;
             if (shadowImage != null)
             {
