@@ -14,8 +14,15 @@ public class NewspaperManager : MonoBehaviour
     public Vector3 startRotation = new Vector3(0, 0, 30f); // Example: 30 degrees Z rotation
     public Vector3 shadowStartScale = new Vector3(0.5f, 0.5f, 1f);
     public float animationDuration = 0.5f;
-
     private bool isAnimating = false;
+    private AudioSource audioSource;
+    public AudioClip newspaperSound;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    
 
     void Start()
     {
@@ -49,6 +56,9 @@ public class NewspaperManager : MonoBehaviour
     IEnumerator AnimateNewspaperIn()
     {
         isAnimating = true;
+        
+        // Play the newspaper sound
+        audioSource.PlayOneShot(newspaperSound);
 
         // Randomize this GameObject's Z rotation between -10 and 10 degrees each time animation starts
         float randomZ = Random.Range(-10f, 10f);
