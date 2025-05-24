@@ -2432,7 +2432,7 @@ MonoBehaviour:
   startRotation: {x: 0, y: 0, z: 60}
   shadowStartScale: {x: 0.5, y: 0.5, z: 1}
   animationDuration: 0.6
-  newspaperSound: {fileID: 8300000, guid: 888c9e0e23831d7478ac4134127676df, type: 3}
+  newspaperSound: {fileID: 8300000, guid: 65a9088434b99664599e6bf6dde674bc, type: 3}
 --- !u!82 &1535194069
 AudioSource:
   m_ObjectHideFlags: 0
