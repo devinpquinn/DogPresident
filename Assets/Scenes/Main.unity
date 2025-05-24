@@ -2970,7 +2970,7 @@ MonoBehaviour:
   slamHoldTime: 0
   windupMultiplier: 1
   slamCompletionPercentageButton: 0.8
-  buttonSlamHoldTime: 0.5
+  buttonSlamHoldTime: 1
   pitchVariation: 0.1
   backgroundRect: {fileID: 13835231}
   parallaxMaxOffset: 10
