@@ -46,12 +46,6 @@ public class BriefingManager : MonoBehaviour
     {
         isSlidingIn = true;
 
-        // Ensure parent rect is at local position zero
-        if (parentRect != null)
-        {
-            parentRect.localPosition = Vector3.zero;
-        }
-
         // Play the slide sound effect as a one-shot
         if (audioSource != null && slideSoundEffect != null)
         {
@@ -110,5 +104,19 @@ public class BriefingManager : MonoBehaviour
 
         folderClosed.SetActive(false);
         folderOpen.SetActive(true);
+    }
+
+    public void ResetBriefing()
+    {
+        if (targetRectTransform != null)
+        {
+            targetRectTransform.localPosition = initialPosition;
+            targetRectTransform.localRotation = initialRotation;
+        }
+        if (folderClosed != null) folderClosed.SetActive(true);
+        if (folderOpen != null) folderOpen.SetActive(false);
+        // Optionally reset parent rect
+        if (parentRect != null)
+            parentRect.localPosition = Vector3.zero;
     }
 }

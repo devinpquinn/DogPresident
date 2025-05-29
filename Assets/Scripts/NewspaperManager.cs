@@ -22,6 +22,8 @@ public class NewspaperManager : MonoBehaviour
 
     private bool isParentMoving = false;
 
+    public BriefingManager briefingManager; // Assign in inspector
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -67,7 +69,7 @@ public class NewspaperManager : MonoBehaviour
         // Play the newspaper sound
         audioSource.PlayOneShot(newspaperSound);
 
-        // Randomize this GameObject's Z rotation between -10 and 10 degrees each time animation starts
+        // Randomize this GameObject's Z rotation between -10f, 10f each time animation starts
         float randomZ = Random.Range(-10f, 10f);
         transform.localEulerAngles = new Vector3(
             transform.localEulerAngles.x,
@@ -148,5 +150,38 @@ public class NewspaperManager : MonoBehaviour
         }
         parentRect.anchoredPosition = targetPos;
         isParentMoving = false;
+
+        // Reset both newspaper and briefing
+        ResetNewspaper();
+        if (briefingManager != null)
+            briefingManager.ResetBriefing();
+    }
+
+    public void ResetNewspaper()
+    {
+        if (newspaperRect != null)
+        {
+            newspaperRect.anchoredPosition = startOffset;
+            newspaperRect.localScale = startScale;
+        }
+        if (shadowRect != null)
+        {
+            shadowRect.anchoredPosition = startOffset * 0.25f;
+            shadowRect.localScale = shadowStartScale;
+            Image shadowImage = shadowRect.GetComponent<Image>();
+            if (shadowImage != null)
+            {
+                Color c = shadowImage.color;
+                c.a = 0f;
+                shadowImage.color = c;
+            }
+        }
+        // Optionally reset this GameObject's rotation
+        float randomZ = Random.Range(-10f, 10f);
+        transform.localEulerAngles = new Vector3(
+            transform.localEulerAngles.x,
+            transform.localEulerAngles.y,
+            randomZ
+        );
     }
 }
