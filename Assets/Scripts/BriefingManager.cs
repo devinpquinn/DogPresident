@@ -5,6 +5,7 @@ public class BriefingManager : MonoBehaviour
 {
     [Header("Slide In Settings")]
     public RectTransform targetRectTransform;
+    public RectTransform parentRect;
     public Vector3 targetPosition;
     public Vector3 rotationVariance;
     public float lerpDuration = 1.0f;
@@ -44,6 +45,12 @@ public class BriefingManager : MonoBehaviour
     private IEnumerator SlideIn()
     {
         isSlidingIn = true;
+
+        // Ensure parent rect is at local position zero
+        if (parentRect != null)
+        {
+            parentRect.localPosition = Vector3.zero;
+        }
 
         // Play the slide sound effect as a one-shot
         if (audioSource != null && slideSoundEffect != null)

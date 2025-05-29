@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRectTransform: {fileID: 2004401014}
+  parentRect: {fileID: 2091028743}
   targetPosition: {x: 1254, y: 0, z: 0}
   rotationVariance: {x: 0, y: 0, z: 10}
   lerpDuration: 0.5
@@ -2396,7 +2397,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535194066}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2430,6 +2431,9 @@ MonoBehaviour:
   shadowStartScale: {x: 0.5, y: 0.5, z: 1}
   animationDuration: 0.6
   newspaperSound: {fileID: 8300000, guid: 65a9088434b99664599e6bf6dde674bc, type: 3}
+  parentRect: {fileID: 2091028743}
+  parentOffscreenTarget: {x: 1400, y: 0}
+  parentMoveDuration: 1
 --- !u!82 &1535194069
 AudioSource:
   m_ObjectHideFlags: 0

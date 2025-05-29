@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class NewspaperManager : MonoBehaviour
 {
-    [Header("Assign the RectTransform of the newspaper UI")]
     public RectTransform newspaperRect;
-    [Header("Assign the RectTransform of the newspaper shadow")]
     public RectTransform shadowRect;
     public Vector2 startOffset = new Vector2(0, -800); // Example offset (off-screen below)
     public Vector3 startScale = new Vector3(0.5f, 0.5f, 1f);
@@ -18,11 +16,16 @@ public class NewspaperManager : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip newspaperSound;
 
+    public RectTransform parentRect; // Assign in inspector
+    public Vector2 parentOffscreenTarget = new Vector2(0, -1000); // Example offscreen position
+    public float parentMoveDuration = 0.5f;
+
+    private bool isParentMoving = false;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-    
+    }  
 
     void Start()
     {
@@ -50,6 +53,10 @@ public class NewspaperManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N) && !isAnimating)
         {
             StartCoroutine(AnimateNewspaperIn());
+        }
+        if (Input.GetKeyDown(KeyCode.M) && !isParentMoving && parentRect != null)
+        {
+            StartCoroutine(MoveParentOffscreen());
         }
     }
 
@@ -122,5 +129,24 @@ public class NewspaperManager : MonoBehaviour
             }
         }
         isAnimating = false;
+    }
+
+    IEnumerator MoveParentOffscreen()
+    {
+        isParentMoving = true;
+        Vector2 startPos = parentRect.anchoredPosition;
+        Vector2 targetPos = parentOffscreenTarget;
+        float elapsed = 0f;
+
+        while (elapsed < parentMoveDuration)
+        {
+            float t = elapsed / parentMoveDuration;
+            float easeT = t * t; // Ease-in
+            parentRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, easeT);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        parentRect.anchoredPosition = targetPos;
+        isParentMoving = false;
     }
 }
