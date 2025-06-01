@@ -276,11 +276,7 @@ public class PawManager : MonoBehaviour
 
         // Reset state
         isSlamming = false;
-        
-        if(!willHitButton)
-        {
-            isTracking = true; // Re-enable tracking if not hitting a button
-        }
+        isTracking = true;
     }
 
     private IEnumerator DisableTemporarily(GameObject target, float duration)
@@ -296,14 +292,5 @@ public class PawManager : MonoBehaviour
     {
         // Wait until the slam is not in progress
         yield return new WaitUntil(() => !isSlamming);
-    }
-
-    // Add this public method:
-    public void ResetTrackingToMouse()
-    {
-        if (mainCamera == null) mainCamera = Camera.main;
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        targetPosition = mousePosition;
     }
 }

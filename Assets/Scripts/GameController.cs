@@ -29,8 +29,6 @@ public class GameController : MonoBehaviour
         while (true)
         {
             // 1. Paw at rest, not live or tracking
-            pawManager.isLive = false;
-            pawManager.isTracking = false;
 
             // 2. Select a scenario (advance)
             scenarioManager.AdvanceToNextScenario();
@@ -48,9 +46,6 @@ public class GameController : MonoBehaviour
             briefingManager.promptText.text = currentScenario.promptText;
 
             // 5. Set paw live and tracking
-            pawManager.isLive = true;
-            pawManager.isTracking = true;
-            pawManager.ResetTrackingToMouse();
 
             // 6. Wait for player to slam a button (wait for slam and get index)
             int chosenResponse = -1;
@@ -62,8 +57,6 @@ public class GameController : MonoBehaviour
             yield return StartCoroutine(pawManager.WaitForSlamComplete());
 
             // 7. Set paw not live or tracking
-            pawManager.isLive = false;
-            pawManager.isTracking = false;
 
             // 8. Show newspaper with result
             Response response = currentScenario.responses[chosenResponse];
