@@ -40,14 +40,6 @@ public class BriefingManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !isSlidingIn)
-        {
-            StartCoroutine(SlideIn());
-        }
-    }
-
     private IEnumerator SlideIn()
     {
         isSlidingIn = true;

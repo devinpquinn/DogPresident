@@ -57,18 +57,6 @@ public class NewspaperManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N) && !isAnimating)
-        {
-            StartCoroutine(AnimateNewspaperIn());
-        }
-        if (Input.GetKeyDown(KeyCode.M) && !isParentMoving && parentRect != null)
-        {
-            StartCoroutine(MoveParentOffscreen());
-        }
-    }
-
     public IEnumerator AnimateNewspaperIn()
     {
         isAnimating = true;

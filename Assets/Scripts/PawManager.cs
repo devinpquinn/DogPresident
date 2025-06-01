@@ -73,13 +73,6 @@ public class PawManager : MonoBehaviour
         if (isSlamming)
             return;
 
-        // Toggle live/rest mode on right-click
-        if (Input.GetMouseButtonDown(1)) // Right mouse button
-        {
-            isLive = !isLive;
-            isTracking = isLive; // Enable/disable tracking based on live mode
-        }
-
         if (!isLive)
         {
             // Lerp the paw to the rest position and rest rotation when not live
