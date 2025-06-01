@@ -12,23 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99535a87e8545149a6064a3e9ca9ebd, type: 3}
   m_Name: TestScenario
   m_EditorClassIdentifier: 
-  promptText: Prompt text for Test Scenario
+  promptText: This is a test scenario. The text here will lay out a pressing policy
+    issue that must be addressed by you. You are the President. You are also a dog.
   responses:
-  - headline: Option 0 chosen
-    subheading: Subheading for option 0
+  - headline: '"Happy" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Happy" and explain the corresponding effect on your approval rating
     approvalEffect: 0
-  - headline: Option 1 chosen
-    subheading: Subheading for option 1
+  - headline: '"Mad" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Mad" and explain the corresponding effect on your approval rating
     approvalEffect: 0
-  - headline: Option 2 chosen
-    subheading: Subheading for option 2
+  - headline: '"Potty" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Potty" and explain the corresponding effect on your approval rating
     approvalEffect: 0
-  - headline: Option 3 chosen
-    subheading: Subheading for option 3
+  - headline: '"Love You" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Love You" and explain the corresponding effect on your approval rating
     approvalEffect: 0
-  - headline: Option 4 chosen
-    subheading: Subheading for option 4
+  - headline: '"Nap" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Nap" and explain the corresponding effect on your approval rating
     approvalEffect: 0
-  - headline: Option 5 chosen
-    subheading: Subheading for option 5
+  - headline: '"Treat" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Treat" and explain the corresponding effect on your approval rating
     approvalEffect: 0
