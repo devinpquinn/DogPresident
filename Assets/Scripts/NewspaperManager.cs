@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // Add this for TextMeshProUGUI
 
 public class NewspaperManager : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class NewspaperManager : MonoBehaviour
     private bool isParentMoving = false;
 
     public BriefingManager briefingManager; // Assign in inspector
+
+    // --- Add these TextMeshProUGUI variables ---
+    public TextMeshProUGUI headlineText;
+    public TextMeshProUGUI subheadingText;
+    public TextMeshProUGUI approvalRatingText;
+    // -------------------------------------------
 
     void Awake()
     {

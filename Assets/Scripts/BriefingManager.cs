@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro; // Add this for TextMeshProUGUI
 
 public class BriefingManager : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class BriefingManager : MonoBehaviour
     public AudioSource audioSource; // Single AudioSource for all sounds
     public AudioClip slideSoundEffect; // Clip for sliding
     public AudioClip[] folderOpenSoundEffects; // Array of clips for folder opening
+
+    // --- Add these TextMeshProUGUI variables ---
+    public TextMeshProUGUI promptText;
+    public TextMeshProUGUI scenarioNumberText;
+    // -------------------------------------------
 
     void Start()
     {

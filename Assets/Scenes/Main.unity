@@ -757,6 +757,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ed6aa98f1d2e87747834b10ba7c5d7c5, type: 3}
   - {fileID: 8300000, guid: 0566d5a5447a579449d8a3bc3c882bc6, type: 3}
   - {fileID: 8300000, guid: fb48395dced6d8a4e9aac82dbe43c3fe, type: 3}
+  promptText: {fileID: 75385265}
+  scenarioNumberText: {fileID: 120922566}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1128,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1390,6 +1396,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1638,6 +1648,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1825,6 +1839,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059067983159126027, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2435,6 +2453,9 @@ MonoBehaviour:
   parentOffscreenTarget: {x: 1400, y: 0}
   parentMoveDuration: 1
   briefingManager: {fileID: 487067931}
+  headlineText: {fileID: 654305356}
+  subheadingText: {fileID: 552163693}
+  approvalRatingText: {fileID: 1442322722}
 --- !u!82 &1535194069
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2854,6 +2875,10 @@ PrefabInstance:
     - target: {fileID: 6059067983159126027, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3590,6 +3615,10 @@ PrefabInstance:
     - target: {fileID: 6059067983159126027, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108659141921764524, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_Name
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
