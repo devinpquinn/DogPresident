@@ -298,5 +298,8 @@ public class PawManager : MonoBehaviour
     {
         isLive = state;
         isTracking = state;
+        
+        isSlamming = false; // Reset slamming state when setting live
+        isMovingToClick = false; // Reset moving to click state
     }
 }
