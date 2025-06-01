@@ -76,8 +76,8 @@ public class PawManager : MonoBehaviour
         if (!isLive)
         {
             // Lerp the paw to the rest position and rest rotation when not live
-            transform.position = Vector3.Lerp(transform.position, restPosition, lerpSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, lerpSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, restPosition, (lerpSpeed / 2) * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, (lerpSpeed / 2) * Time.deltaTime);
         }
         else if (isMovingToClick)
         {

@@ -44,6 +44,9 @@ public class GameController : MonoBehaviour
 
             // 4. Set prompt text
             briefingManager.promptText.text = currentScenario.promptText;
+            
+            // 4.5. Wait
+            yield return new WaitForSeconds(0.5f);
 
             // 5. Set paw live and tracking
             pawManager.SetLive(true);
@@ -59,6 +62,9 @@ public class GameController : MonoBehaviour
 
             // 7. Set paw not live or tracking
             pawManager.SetLive(false);
+            
+            // 7.5. Wait
+            yield return new WaitForSeconds(0.5f);
 
             // 8. Show newspaper with result
             Response response = currentScenario.responses[chosenResponse];
@@ -77,6 +83,9 @@ public class GameController : MonoBehaviour
 
             // 10. Move newspaper parent offscreen
             yield return StartCoroutine(newspaperManager.MoveParentOffscreen());
+            
+            // 10.5. Wait
+            yield return new WaitForSeconds(0.5f);
 
             // 11. Repeat
             currentScenario = null;
