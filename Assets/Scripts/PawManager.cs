@@ -293,4 +293,10 @@ public class PawManager : MonoBehaviour
         // Wait until the slam is not in progress
         yield return new WaitUntil(() => !isSlamming);
     }
+    
+    public void SetLive(bool state)
+    {
+        isLive = state;
+        isTracking = state;
+    }
 }
