@@ -55,6 +55,9 @@ public class GameController : MonoBehaviour
             pawManager.OnButtonSlammed = (index) => { chosenResponse = index; waitingForSlam = false; };
             yield return new WaitUntil(() => !waitingForSlam);
 
+            // Wait for the slam animation (including return) to finish
+            yield return StartCoroutine(pawManager.WaitForSlamComplete());
+
             // 7. Set paw not live
             pawManager.isLive = false;
 

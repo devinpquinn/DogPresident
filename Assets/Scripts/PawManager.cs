@@ -276,7 +276,11 @@ public class PawManager : MonoBehaviour
 
         // Reset state
         isSlamming = false;
-        isTracking = true; // Re-enable tracking after the slam
+        
+        if(!willHitButton)
+        {
+            isTracking = true; // Re-enable tracking if not hitting a button
+        }
     }
 
     private IEnumerator DisableTemporarily(GameObject target, float duration)
@@ -284,5 +288,13 @@ public class PawManager : MonoBehaviour
         target.SetActive(false);
         yield return new WaitForSeconds(duration);
         target.SetActive(true);
+    }
+
+    public bool IsSlamInProgress => isSlamming;
+
+    public IEnumerator WaitForSlamComplete()
+    {
+        // Wait until the slam is not in progress
+        yield return new WaitUntil(() => !isSlamming);
     }
 }
