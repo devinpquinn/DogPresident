@@ -69,7 +69,7 @@ public class NewspaperManager : MonoBehaviour
         }
     }
 
-    IEnumerator AnimateNewspaperIn()
+    public IEnumerator AnimateNewspaperIn()
     {
         isAnimating = true;
         
@@ -140,7 +140,7 @@ public class NewspaperManager : MonoBehaviour
         isAnimating = false;
     }
 
-    IEnumerator MoveParentOffscreen()
+    public IEnumerator MoveParentOffscreen()
     {
         isParentMoving = true;
         Vector2 startPos = parentRect.anchoredPosition;

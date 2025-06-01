@@ -33,7 +33,7 @@ public class PawManager : MonoBehaviour
 
     public Vector3 restPosition = new Vector3(0f, -3f, 0f); // Define the rest position of the paw
     public Quaternion restRotation = Quaternion.identity; // Define the rest rotation of the paw (default is no rotation)
-    private bool isLive = true; // Whether the paw is in live mode
+    [HideInInspector] public bool isLive = true; // Whether the paw is in live mode
 
     private Camera mainCamera;
     private bool isSlamming = false; // Whether the arm is currently slamming
@@ -43,6 +43,8 @@ public class PawManager : MonoBehaviour
     private Vector3 targetPosition; // Target position for tracking
     private bool isMovingToClick = false; // Whether the paw is moving to the clicked position
     private Vector2 backgroundInitialPosition; // Store the initial position of the background
+
+    public System.Action<int> OnButtonSlammed; // Add this at the top
 
     void Start()
     {
@@ -228,6 +230,12 @@ public class PawManager : MonoBehaviour
             {
                 audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
                 audioSource.PlayOneShot(buttonDownClip);
+            }
+
+            int index;
+            if (int.TryParse(hit.collider.gameObject.name, out index))
+            {
+                OnButtonSlammed?.Invoke(index);
             }
         }
         else

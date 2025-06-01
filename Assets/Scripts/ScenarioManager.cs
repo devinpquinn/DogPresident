@@ -13,10 +13,9 @@ public class ScenarioManager : MonoBehaviour
     public delegate void OnResponsePlayed(Response response);
     public event OnResponsePlayed onResponsePlayed;
 
-    void Start()
+    void Awake()
     {
         LoadAndShuffleScenarios();
-        AdvanceToNextScenario();
     }
 
     private void LoadAndShuffleScenarios()
