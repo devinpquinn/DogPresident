@@ -36,8 +36,8 @@ public class PawManager : MonoBehaviour
     [HideInInspector] public bool isLive = true; // Whether the paw is in live mode
 
     private Camera mainCamera;
-    private bool isSlamming = false; // Whether the arm is currently slamming
-    private bool isTracking = true; // Whether the arm is tracking the mouse
+    [HideInInspector] public bool isSlamming = false; // Whether the arm is currently slamming
+    [HideInInspector] public bool isTracking = true; // Whether the arm is tracking the mouse
     private Vector3 initialLocalPosition; // Initial local position of the child arm
     private Transform childArm; // Reference to the child GameObject (arm sprite)
     private Vector3 targetPosition; // Target position for tracking
@@ -296,5 +296,14 @@ public class PawManager : MonoBehaviour
     {
         // Wait until the slam is not in progress
         yield return new WaitUntil(() => !isSlamming);
+    }
+
+    // Add this public method:
+    public void ResetTrackingToMouse()
+    {
+        if (mainCamera == null) mainCamera = Camera.main;
+        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+        targetPosition = mousePosition;
     }
 }
