@@ -14,6 +14,10 @@ public class GameController : MonoBehaviour
     private bool waitingForSlam = false;
     private bool waitingForNewspaperClick = false;
 
+    private int approvalRating = 50; // Start at 50%
+
+    private System.Random rng = new System.Random();
+
     void Start()
     {
         // Subscribe to scenario and response events
@@ -68,8 +72,14 @@ public class GameController : MonoBehaviour
 
             // 8. Show newspaper with result
             Response response = currentScenario.responses[chosenResponse];
+
+            // Apply approval effect
+            int delta = GetApprovalDelta(response.approvalEffect);
+            approvalRating = Mathf.Clamp(approvalRating + delta, 0, 100);
+
             newspaperManager.headlineText.text = response.headline;
             newspaperManager.subheadingText.text = response.subheading;
+            newspaperManager.approvalRatingText.text = $"Approval rating is now at {approvalRating} percent";
             StartCoroutine(newspaperManager.AnimateNewspaperIn());
 
             // 9. Wait for player to click to continue
@@ -109,4 +119,23 @@ public class GameController : MonoBehaviour
 
     // Called when a response is played (optional, not used here)
     void OnResponsePlayed(Response response) { }
+
+    private int GetApprovalDelta(ApprovalRatingEffect effect)
+    {
+        switch (effect)
+        {
+            case ApprovalRatingEffect.Mixed:
+                return rng.Next(-9, 10); // -9 to +9
+            case ApprovalRatingEffect.PositiveSmall:
+                return rng.Next(10, 25); // +10 to +24
+            case ApprovalRatingEffect.PositiveLarge:
+                return rng.Next(25, 50); // +25 to +49
+            case ApprovalRatingEffect.NegativeSmall:
+                return -rng.Next(10, 25); // -10 to -24
+            case ApprovalRatingEffect.NegativeLarge:
+                return -rng.Next(25, 50); // -25 to -49
+            default:
+                return 0;
+        }
+    }
 }
