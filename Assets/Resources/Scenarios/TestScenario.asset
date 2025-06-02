@@ -18,11 +18,11 @@ MonoBehaviour:
   - headline: '"Happy" -Pres'
     subheading: The text here will provide details on the outcome of your decision
       to press "Happy" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
+    approvalEffect: 4
   - headline: '"Mad" -Pres'
     subheading: The text here will provide details on the outcome of your decision
       to press "Mad" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
+    approvalEffect: 3
   - headline: '"Potty" -Pres'
     subheading: The text here will provide details on the outcome of your decision
       to press "Potty" and explain the corresponding effect on your approval rating
@@ -34,8 +34,8 @@ MonoBehaviour:
   - headline: '"Nap" -Pres'
     subheading: The text here will provide details on the outcome of your decision
       to press "Nap" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
+    approvalEffect: 2
   - headline: '"Treat" -Pres'
     subheading: The text here will provide details on the outcome of your decision
       to press "Treat" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
+    approvalEffect: 1
