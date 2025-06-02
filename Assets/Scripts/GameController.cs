@@ -18,6 +18,27 @@ public class GameController : MonoBehaviour
 
     private System.Random rng = new System.Random();
 
+    private readonly string[] positiveSmallPhrases = {
+        "Approval rating improves",
+        "Approval rating rises",
+        "Approval rating ticks up"
+    };
+    private readonly string[] positiveLargePhrases = {
+        "Approval rating soars",
+        "Approval rating skyrockets",
+        "Approval rating jumps"
+    };
+    private readonly string[] negativeSmallPhrases = {
+        "Approval rating drops",
+        "Approval rating dips",
+        "Approval rating falls slightly"
+    };
+    private readonly string[] negativeLargePhrases = {
+        "Approval rating plummets",
+        "Approval rating nosedives",
+        "Approval rating crashes"
+    };
+
     void Start()
     {
         // Subscribe to scenario and response events
@@ -77,9 +98,10 @@ public class GameController : MonoBehaviour
             int delta = GetApprovalDelta(response.approvalEffect);
             approvalRating = Mathf.Clamp(approvalRating + delta, 0, 100);
 
+            string phrase = GetApprovalPhrase(response.approvalEffect, delta);
             newspaperManager.headlineText.text = response.headline;
             newspaperManager.subheadingText.text = response.subheading;
-            newspaperManager.approvalRatingText.text = $"Approval rating is now at {approvalRating} percent";
+            newspaperManager.approvalRatingText.text = $"{phrase} to {approvalRating} percent";
             StartCoroutine(newspaperManager.AnimateNewspaperIn());
 
             // 9. Wait for player to click to continue
@@ -125,7 +147,10 @@ public class GameController : MonoBehaviour
         switch (effect)
         {
             case ApprovalRatingEffect.Mixed:
-                return rng.Next(-9, 10); // -9 to +9
+                int mixedDelta = 0;
+                while (mixedDelta == 0)
+                    mixedDelta = rng.Next(-9, 10); // -9 to +9, but not zero
+                return mixedDelta;
             case ApprovalRatingEffect.PositiveSmall:
                 return rng.Next(10, 25); // +10 to +24
             case ApprovalRatingEffect.PositiveLarge:
@@ -136,6 +161,37 @@ public class GameController : MonoBehaviour
                 return -rng.Next(25, 50); // -25 to -49
             default:
                 return 0;
+        }
+    }
+
+    private string GetApprovalPhrase(ApprovalRatingEffect effect, int delta)
+    {
+        if (effect == ApprovalRatingEffect.Mixed)
+        {
+            if (delta > 0)
+                return positiveSmallPhrases[rng.Next(positiveSmallPhrases.Length)];
+            else
+                return negativeSmallPhrases[rng.Next(negativeSmallPhrases.Length)];
+        }
+        else if (effect == ApprovalRatingEffect.PositiveSmall)
+        {
+            return positiveSmallPhrases[rng.Next(positiveSmallPhrases.Length)];
+        }
+        else if (effect == ApprovalRatingEffect.PositiveLarge)
+        {
+            return positiveLargePhrases[rng.Next(positiveLargePhrases.Length)];
+        }
+        else if (effect == ApprovalRatingEffect.NegativeSmall)
+        {
+            return negativeSmallPhrases[rng.Next(negativeSmallPhrases.Length)];
+        }
+        else if (effect == ApprovalRatingEffect.NegativeLarge)
+        {
+            return negativeLargePhrases[rng.Next(negativeLargePhrases.Length)];
+        }
+        else
+        {
+            return "Approval rating";
         }
     }
 }
