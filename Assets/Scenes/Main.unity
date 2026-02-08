@@ -1123,6 +1123,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
+      propertyPath: m_text
+      value: 'Potty
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 6059067983159126027, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_Name
       value: ChoiceButton (2)
