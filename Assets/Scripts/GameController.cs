@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour
         while (true)
         {
             // 1. Paw at rest, not live or tracking
+            pawManager.SetLive(false);
 
             // 2. Select a scenario (advance)
             scenarioManager.AdvanceToNextScenario();
