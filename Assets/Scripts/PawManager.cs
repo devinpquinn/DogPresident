@@ -8,6 +8,7 @@ public class PawManager : MonoBehaviour
     public float maxY = -2.2f; // Maximum Y position
     public float rotationFactor = 30f; // Factor to control rotation sensitivity
     public float rotationBias = 0.55f; // Bias for the middle point of no rotation
+    public float rotationClamp = 25f; // Hard limit for Z rotation
     public float slamSpeed = 50f; // Speed of the slam
     public float slamHoldTime = 0.1f; // Time to hold the slam position
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
@@ -111,6 +112,7 @@ public class PawManager : MonoBehaviour
 
             // Apply rotation with bias
             float rotationZ = -horizontalDistance * rotationFactor;
+            rotationZ = Mathf.Clamp(rotationZ, -rotationClamp, rotationClamp);
             transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         }
 

@@ -3018,7 +3018,7 @@ GameObject:
   - component: {fileID: 1913209711}
   - component: {fileID: 1913209712}
   m_Layer: 0
-  m_Name: Paw Shadow
+  m_Name: Paw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3114,6 +3114,7 @@ MonoBehaviour:
   maxY: -1.2
   rotationFactor: 30
   rotationBias: 0.55
+  rotationClamp: 18
   slamSpeed: 30
   slamHoldTime: 0
   windupMultiplier: 1
