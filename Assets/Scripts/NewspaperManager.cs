@@ -78,7 +78,7 @@ public class NewspaperManager : MonoBehaviour
         Vector3 initialScale = startScale;
         Vector3 targetScale = Vector3.one;
         Vector3 shadowInitialScale = shadowStartScale;
-        Vector3 shadowTargetScale = Vector3.one;
+        Vector3 shadowTargetScale = Vector3.one * 1.05f; // Slightly larger for shadow
 
         // Shadow offset is half of the newspaper offset
         Vector2 shadowInitialPos = startOffset * 0.25f;

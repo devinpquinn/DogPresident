@@ -10,7 +10,6 @@ public class PawManager : MonoBehaviour
     public float rotationBias = 0.55f; // Bias for the middle point of no rotation
     public float rotationClamp = 25f; // Hard limit for Z rotation
     public float slamSpeed = 50f; // Speed of the slam
-    public float slamHoldTime = 0.1f; // Time to hold the slam position
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
     public float slamCompletionPercentageButton = 0.8f; // Percentage of the slam to complete when hitting a button
     public float buttonSlamHoldTime = 1f; // Time to hold the slam position when hitting a button
@@ -20,7 +19,6 @@ public class PawManager : MonoBehaviour
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
     public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
 
-    public AudioClip carpetHitClip; // Audio clip for hitting the carpet
     public AudioClip buttonDownClip; // Audio clip for pressing a button
     public AudioClip buttonUpClip; // Audio clip for releasing a button
     private AudioSource audioSource; // Reference to the AudioSource component
@@ -119,8 +117,13 @@ public class PawManager : MonoBehaviour
         // Check for left-click to initiate slam
         if (Input.GetMouseButtonDown(0) && !isSlamming)
         {
-            isMovingToClick = true;
-            isTracking = false; // Temporarily disable tracking during the slam
+            Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, 0f, LayerMask.GetMask("Button"));
+            if (hit.collider != null)
+            {
+                isMovingToClick = true;
+                isTracking = false; // Temporarily disable tracking during the slam
+            }
         }
 
         // Parallax effect (always active)
@@ -175,10 +178,15 @@ public class PawManager : MonoBehaviour
 
         // Perform raycast at the start of the slam
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, LayerMask.GetMask("Button"));
-        bool willHitButton = hit.collider != null;
+        if (hit.collider == null)
+        {
+            isSlamming = false;
+            isTracking = true;
+            yield break;
+        }
 
         // Determine the slam target position based on whether a button will be hit
-        Vector3 slamPosition = Vector3.zero; // 80% of the way down if hitting a button
+        Vector3 slamPosition = Vector3.zero;
         Vector3 slamScale = Vector3.one; // Scale down to 1 during the slam
         
         // Change to "down" sprites
@@ -190,69 +198,46 @@ public class PawManager : MonoBehaviour
         // Lerp the child arm to the slam position and scale
         while (Vector3.Distance(childArm.localPosition, slamPosition) > 0.01f || Vector3.Distance(childArm.localScale, slamScale) > 0.01f)
         {
-            if (willHitButton)
-            {
-                // Calculate the partial slam position and scale based on the slamCompletionPercentage
-                Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, slamCompletionPercentageButton);
-                Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.05f, slamScale, slamCompletionPercentageButton);
+            // Calculate the partial slam position and scale based on the slamCompletionPercentage
+            Vector3 partialSlamPosition = Vector3.Lerp(returnPosition, slamPosition, slamCompletionPercentageButton);
+            Vector3 partialSlamScale = Vector3.Lerp(Vector3.one * 1.05f, slamScale, slamCompletionPercentageButton);
 
-                // Lerp towards the partial slam position and scale
-                childArm.localPosition = Vector3.Lerp(childArm.localPosition, partialSlamPosition, slamSpeed * Time.deltaTime);
-                childArm.localScale = Vector3.Lerp(childArm.localScale, partialSlamScale, slamSpeed * Time.deltaTime);
+            // Lerp towards the partial slam position and scale
+            childArm.localPosition = Vector3.Lerp(childArm.localPosition, partialSlamPosition, slamSpeed * Time.deltaTime);
+            childArm.localScale = Vector3.Lerp(childArm.localScale, partialSlamScale, slamSpeed * Time.deltaTime);
 
-                // Break out of the loop once close enough to the partial position and scale
-                if (Vector3.Distance(childArm.localPosition, partialSlamPosition) <= 0.01f && Vector3.Distance(childArm.localScale, partialSlamScale) <= 0.01f)
-                {
-                    childArm.localPosition = partialSlamPosition;
-                    childArm.localScale = partialSlamScale;
-                    break;
-                }
-            }
-            else
+            // Break out of the loop once close enough to the partial position and scale
+            if (Vector3.Distance(childArm.localPosition, partialSlamPosition) <= 0.01f && Vector3.Distance(childArm.localScale, partialSlamScale) <= 0.01f)
             {
-                // Normal slam behavior
-                childArm.localPosition = Vector3.Lerp(childArm.localPosition, slamPosition, slamSpeed * Time.deltaTime);
-                childArm.localScale = Vector3.Lerp(childArm.localScale, slamScale, slamSpeed * Time.deltaTime);
+                childArm.localPosition = partialSlamPosition;
+                childArm.localScale = partialSlamScale;
+                break;
             }
 
             yield return null;
         }
 
         // Play the appropriate audio clip based on whether a button was hit
-        if (willHitButton)
+        if (buttonDownClip != null)
         {
-            if (buttonDownClip != null)
-            {
-                audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
-                audioSource.PlayOneShot(buttonDownClip);
-            }
-
-            int index;
-            if (int.TryParse(hit.collider.gameObject.name, out index))
-            {
-                OnButtonSlammed?.Invoke(index);
-            }
-        }
-        else
-        {
-            if (carpetHitClip != null)
-            {
-                audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
-                audioSource.PlayOneShot(carpetHitClip);
-            }
+            audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
+            audioSource.PlayOneShot(buttonDownClip);
         }
 
-        // If a button will be hit, disable its sprite renderer after the slam
-        if (willHitButton)
+        int index;
+        if (int.TryParse(hit.collider.gameObject.name, out index))
         {
-            StartCoroutine(DisableTemporarily(hit.collider.gameObject, buttonSlamHoldTime));
+            OnButtonSlammed?.Invoke(index);
         }
+
+        // Disable the button after the slam
+        StartCoroutine(DisableTemporarily(hit.collider.gameObject, buttonSlamHoldTime));
 
         // Hold the slam position for a moment
-        yield return new WaitForSeconds(willHitButton ? buttonSlamHoldTime : slamHoldTime);
+        yield return new WaitForSeconds(buttonSlamHoldTime);
 
         // Play the button up clip when releasing the hold
-        if (willHitButton && buttonUpClip != null)
+        if (buttonUpClip != null)
         {
             audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
             audioSource.PlayOneShot(buttonUpClip);
