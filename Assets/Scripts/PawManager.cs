@@ -13,6 +13,7 @@ public class PawManager : MonoBehaviour
     public float windupMultiplier = 1.25f; // Multiplier for the windup offset
     public float slamCompletionPercentageButton = 0.8f; // Percentage of the slam to complete when hitting a button
     public float buttonSlamHoldTime = 1f; // Time to hold the slam position when hitting a button
+    public float buttonClipDelay = 0.5f; // Delay before playing per-button clip
     public float pitchVariation = 0.1f; // Amount of pitch variation
 
     public RectTransform backgroundRect; // Reference to the background RectTransform
@@ -20,6 +21,7 @@ public class PawManager : MonoBehaviour
     public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
 
     public AudioClip buttonDownClip; // Audio clip for pressing a button
+    public AudioClip[] buttonClips; // Audio clips for button presses by index
     public AudioClip buttonUpClip; // Audio clip for releasing a button
     private AudioSource audioSource; // Reference to the AudioSource component
 
@@ -227,6 +229,10 @@ public class PawManager : MonoBehaviour
         int index;
         if (int.TryParse(hit.collider.gameObject.name, out index))
         {
+            if (buttonClips != null && index >= 0 && index < buttonClips.Length && buttonClips[index] != null)
+            {
+                StartCoroutine(PlayButtonClipDelayed(buttonClips[index]));
+            }
             OnButtonSlammed?.Invoke(index);
         }
 
@@ -271,6 +277,18 @@ public class PawManager : MonoBehaviour
         target.SetActive(false);
         yield return new WaitForSeconds(duration);
         target.SetActive(true);
+    }
+
+    private IEnumerator PlayButtonClipDelayed(AudioClip clip)
+    {
+        if (clip == null)
+            yield break;
+
+        if (buttonClipDelay > 0f)
+            yield return new WaitForSeconds(buttonClipDelay);
+
+        audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation); // Apply pitch variation
+        audioSource.PlayOneShot(clip);
     }
 
     public bool IsSlamInProgress => isSlamming;

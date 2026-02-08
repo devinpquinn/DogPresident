@@ -3129,6 +3129,13 @@ MonoBehaviour:
   parallaxMaxOffset: 10
   parallaxLerpSpeed: 5
   buttonDownClip: {fileID: 8300000, guid: 8da3f9c58c95aff408f0bcae723e5175, type: 3}
+  buttonClips:
+  - {fileID: 8300000, guid: dc3d84355d708e2448c07ec412a183c0, type: 3}
+  - {fileID: 8300000, guid: 1a5d9061d92769a44875d6992a108e5a, type: 3}
+  - {fileID: 8300000, guid: 61c02af60dc7e254b80c77b078b4d455, type: 3}
+  - {fileID: 8300000, guid: c2ab570e6f025a44a8a64fdf6d87b768, type: 3}
+  - {fileID: 8300000, guid: bf5b35884a4cbed48a701106a42ebcf2, type: 3}
+  - {fileID: 8300000, guid: cc791b4f4d34b2945b5c335b354f4c4a, type: 3}
   buttonUpClip: {fileID: 8300000, guid: 328b431d6c3481a45b909c387342900c, type: 3}
   mainSpriteRenderer: {fileID: 1130334335}
   shadowSpriteRenderer: {fileID: 1913209710}
