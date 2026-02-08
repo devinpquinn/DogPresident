@@ -1455,6 +1455,9 @@ MonoBehaviour:
   scenarioManager: {fileID: 1261974613}
   briefingManager: {fileID: 487067931}
   newspaperManager: {fileID: 1535194068}
+  backgroundCamera: {fileID: 0}
+  hueStepPerRound: 0.05
+  hueLerpDuration: 1
 --- !u!4 &639835162
 Transform:
   m_ObjectHideFlags: 0
@@ -2838,7 +2841,7 @@ RectTransform:
   m_GameObject: {fileID: 1702008453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.04, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1486681920}
@@ -3261,7 +3264,7 @@ RectTransform:
   m_GameObject: {fileID: 1972089228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.04, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1055972955}

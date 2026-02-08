@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour
     public ScenarioManager scenarioManager;
     public BriefingManager briefingManager;
     public NewspaperManager newspaperManager;
+    public Camera backgroundCamera;
+    public float hueStepPerRound = 0.05f;
+    public float hueLerpDuration = 0.6f;
 
     private int scenariosPlayed = 0;
     private Scenario currentScenario;
@@ -15,6 +18,10 @@ public class GameController : MonoBehaviour
     private bool waitingForNewspaperClick = false;
 
     private int approvalRating = 50; // Start at 50%
+
+    private float currentBackgroundHue = 0f;
+    private float backgroundSaturation = 0f;
+    private float backgroundValue = 0f;
 
     private System.Random rng = new System.Random();
 
@@ -50,6 +57,8 @@ public class GameController : MonoBehaviour
         
         // Hide cursor
         Cursor.visible = false;
+
+        InitializeBackgroundHue();
     }
 
     IEnumerator GameplayLoop()
@@ -123,9 +132,49 @@ public class GameController : MonoBehaviour
             // 10.5. Wait
             yield return new WaitForSeconds(0.5f);
 
+            // 10.75. Shift background hue slightly for the next round
+            yield return StartCoroutine(LerpBackgroundHue());
+
             // 11. Repeat
             currentScenario = null;
         }
+    }
+
+    private void InitializeBackgroundHue()
+    {
+        if (backgroundCamera == null)
+            backgroundCamera = Camera.main;
+
+        if (backgroundCamera == null)
+            return;
+
+        Color.RGBToHSV(backgroundCamera.backgroundColor, out currentBackgroundHue, out backgroundSaturation, out backgroundValue);
+    }
+
+    private IEnumerator LerpBackgroundHue()
+    {
+        if (backgroundCamera == null)
+            yield break;
+
+        float startHue = currentBackgroundHue;
+        float targetHue = Mathf.Repeat(currentBackgroundHue + hueStepPerRound, 1f);
+
+        float lerpStartHue = startHue;
+        float lerpTargetHue = targetHue < startHue ? targetHue + 1f : targetHue;
+
+        float elapsed = 0f;
+        while (elapsed < hueLerpDuration)
+        {
+            float t = hueLerpDuration > 0f ? elapsed / hueLerpDuration : 1f;
+            float hue = Mathf.Lerp(lerpStartHue, lerpTargetHue, t);
+            hue = Mathf.Repeat(hue, 1f);
+            backgroundCamera.backgroundColor = Color.HSVToRGB(hue, backgroundSaturation, backgroundValue);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        currentBackgroundHue = targetHue;
+        backgroundCamera.backgroundColor = Color.HSVToRGB(currentBackgroundHue, backgroundSaturation, backgroundValue);
     }
 
     // Helper to wait for briefing slide in
