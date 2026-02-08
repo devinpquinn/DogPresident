@@ -254,7 +254,7 @@ MonoBehaviour:
     that urgently needs your input and your canine wisdom. What is your directive?
     Use one of the buttons below to respond.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 58db3de8472f05246b1e104ad9558240, type: 2}
   m_sharedMaterial: {fileID: -111941530663974530, guid: 6296ad9b4897ab34ab2ef0cc1863d133, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -932,7 +932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: -70}
+  m_AnchoredPosition: {x: -110, y: -74}
   m_SizeDelta: {x: 447.84, y: 300}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &552163693
@@ -956,10 +956,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Subheading provides more context on outcome of event, experts weigh in
-    as death toll mounts sharply
+    as death toll mounts sharply. This continues for several more lines, such as
+    this one and also this last one here.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d70fe62f352b17d4e9974187028ed44c, type: 2}
-  m_sharedMaterial: {fileID: -4446959692440590816, guid: d70fe62f352b17d4e9974187028ed44c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86f5b3c0c501ad840909a49aa11a6b60, type: 2}
+  m_sharedMaterial: {fileID: 5248888007880448549, guid: 86f5b3c0c501ad840909a49aa11a6b60, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -983,12 +984,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 35.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 32
-  m_fontSizeMax: 36
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -2235,7 +2236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 85}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 860, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1442322722
@@ -2260,8 +2261,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Approval rating skyrockets to 100 percent
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
-  m_sharedMaterial: {fileID: 7616292967630006290, guid: 75f9af6229c7a6f47a039dc71963d87c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bc0344cd7585ae54d96f3e8657bc138b, type: 2}
+  m_sharedMaterial: {fileID: 8066851867032463245, guid: bc0344cd7585ae54d96f3e8657bc138b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
