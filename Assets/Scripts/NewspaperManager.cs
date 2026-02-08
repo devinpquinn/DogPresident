@@ -16,6 +16,7 @@ public class NewspaperManager : MonoBehaviour
     private bool isAnimating = false;
     private AudioSource audioSource;
     public AudioClip newspaperSound;
+    public AudioClip slideOutSound;
 
     public RectTransform parentRect; // Assign in inspector
     public Vector2 parentOffscreenTarget = new Vector2(0, -1000); // Example offscreen position
@@ -134,6 +135,8 @@ public class NewspaperManager : MonoBehaviour
         Vector2 startPos = parentRect.anchoredPosition;
         Vector2 targetPos = parentOffscreenTarget;
         float elapsed = 0f;
+        
+        audioSource.PlayOneShot(slideOutSound); // Play slide out sound at the start of the movement
 
         while (elapsed < parentMoveDuration)
         {

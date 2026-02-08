@@ -2567,6 +2567,7 @@ MonoBehaviour:
   shadowStartScale: {x: 0.5, y: 0.5, z: 1}
   animationDuration: 0.6
   newspaperSound: {fileID: 8300000, guid: 65a9088434b99664599e6bf6dde674bc, type: 3}
+  slideOutSound: {fileID: 8300000, guid: 513ca39c17fc80a4383e496684697ee6, type: 3}
   parentRect: {fileID: 2091028743}
   parentOffscreenTarget: {x: 1400, y: 0}
   parentMoveDuration: 1
