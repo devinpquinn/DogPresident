@@ -254,7 +254,7 @@ MonoBehaviour:
     that urgently needs your input and your canine wisdom. What is your directive?
     Use one of the buttons below to respond.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6296ad9b4897ab34ab2ef0cc1863d133, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
   m_sharedMaterial: {fileID: -111941530663974530, guid: 6296ad9b4897ab34ab2ef0cc1863d133, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_fontSizeMin: 32
   m_fontSizeMax: 32
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &75385266
