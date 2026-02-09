@@ -149,6 +149,9 @@ public class GameController : MonoBehaviour
             return;
 
         Color.RGBToHSV(backgroundCamera.backgroundColor, out currentBackgroundHue, out backgroundSaturation, out backgroundValue);
+
+        currentBackgroundHue = Random.Range(0f, 1f);
+        backgroundCamera.backgroundColor = Color.HSVToRGB(currentBackgroundHue, backgroundSaturation, backgroundValue);
     }
 
     private IEnumerator LerpBackgroundHue()
