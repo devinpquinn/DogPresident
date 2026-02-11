@@ -18,6 +18,7 @@ public class PawManager : MonoBehaviour
 
     public RectTransform backgroundRect; // Reference to the background RectTransform
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
+    public float parallaxMaxVerticalOffset = 20f; // Maximum vertical offset for the parallax effect
     public float parallaxLerpSpeed = 5f; // Speed of the parallax easing
 
     public AudioClip buttonDownClip; // Audio clip for pressing a button
@@ -133,14 +134,20 @@ public class PawManager : MonoBehaviour
         {
             // Get the normalized horizontal position of the cursor (-1 to 1), accounting for rotationBias
             float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
             float screenMiddle = screenWidth * rotationBias; // Adjust middle point based on bias
             float normalizedCursorX = (Input.mousePosition.x - screenMiddle) / screenWidth * 2f;
 
-            // Calculate the target offset based on the normalized cursor position
+            // Calculate the target offsets based on cursor position
             float targetOffsetX = normalizedCursorX * parallaxMaxOffset * -1f;
+            float normalizedCursorY = Mathf.InverseLerp(0f, screenHeight, Input.mousePosition.y);
+            float targetOffsetY = normalizedCursorY * parallaxMaxVerticalOffset * -1f;
 
             // Smoothly lerp the background's position to the target offset
-            Vector2 targetPosition = new Vector2(backgroundInitialPosition.x + targetOffsetX, backgroundInitialPosition.y);
+            Vector2 targetPosition = new Vector2(
+                backgroundInitialPosition.x + targetOffsetX,
+                backgroundInitialPosition.y + targetOffsetY
+            );
             backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
 
             // Apply a parallax effect to the child paw's global X offset relative to its base offset
