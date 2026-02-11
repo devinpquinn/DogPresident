@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     private int approvalRating = 50; // Start at 50%
 
     private int currentBackgroundColorIndex = 0;
+    private int backgroundColorDirection = 1;
 
     private System.Random rng = new System.Random();
 
@@ -168,7 +169,17 @@ public class GameController : MonoBehaviour
             yield break;
         }
 
-        int nextIndex = (currentBackgroundColorIndex + 1) % backgroundColors.Length;
+        int nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
+        if (nextIndex >= backgroundColors.Length)
+        {
+            backgroundColorDirection = -1;
+            nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
+        }
+        else if (nextIndex < 0)
+        {
+            backgroundColorDirection = 1;
+            nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
+        }
         Color startColor = backgroundColors[currentBackgroundColorIndex];
         Color targetColor = backgroundColors[nextIndex];
 
