@@ -3153,6 +3153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpSpeed: 10
+  restLerpSpeed: 3
   maxY: -1.2
   rotationFactor: 30
   rotationBias: 0.55

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PawManager : MonoBehaviour
 {
     public float lerpSpeed = 5f; // Speed of lerping
+    public float restLerpSpeed = 2.5f; // Speed of lerping to rest when not live
     public float maxY = -2.2f; // Maximum Y position
     public float rotationFactor = 30f; // Factor to control rotation sensitivity
     public float rotationBias = 0.55f; // Bias for the middle point of no rotation
@@ -78,8 +79,8 @@ public class PawManager : MonoBehaviour
         if (!isLive)
         {
             // Lerp the paw to the rest position and rest rotation when not live
-            transform.position = Vector3.Lerp(transform.position, restPosition, (lerpSpeed / 2) * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, (lerpSpeed / 2) * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, restPosition, restLerpSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, restRotation, restLerpSpeed * Time.deltaTime);
         }
         else if (isMovingToClick)
         {
