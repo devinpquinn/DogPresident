@@ -254,7 +254,7 @@ MonoBehaviour:
     that urgently needs your input and your canine wisdom. What is your directive?
     Use one of the buttons below to respond.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 86f5b3c0c501ad840909a49aa11a6b60, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4b9ff4111e15604ab314c1a49063c78, type: 2}
   m_sharedMaterial: {fileID: -111941530663974530, guid: 6296ad9b4897ab34ab2ef0cc1863d133, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
