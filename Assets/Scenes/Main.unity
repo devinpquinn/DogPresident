@@ -3163,7 +3163,7 @@ MonoBehaviour:
   rotationClamp: 18
   slamSpeed: 30
   windupMultiplier: 1
-  slamCompletionPercentageButton: 0.8
+  slamCompletionPercentageButton: 0.95
   buttonSlamHoldTime: 0.5
   buttonClipDelay: 0.5
   pitchVariation: 0.1
