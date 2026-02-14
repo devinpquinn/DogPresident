@@ -14,6 +14,7 @@ public class Scenario : ScriptableObject
 public class Response
 {
     public string headline;
+    [TextArea(3, 8)]
     public string subheading;
 
     public ApprovalRatingEffect approvalEffect = ApprovalRatingEffect.Mixed;
