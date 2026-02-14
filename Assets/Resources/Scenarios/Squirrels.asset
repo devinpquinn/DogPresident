@@ -12,30 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99535a87e8545149a6064a3e9ca9ebd, type: 3}
   m_Name: Squirrels
   m_EditorClassIdentifier: 
-  promptText: This is a test scenario. The text here will lay out a pressing policy
-    issue that must be addressed by you. You are the President. You are also a dog.
+  promptText: Rising squirrel populations have become a nuisance to some in city
+    parks who wish to eat their lunches in peace.
   responses:
-  - headline: '"Happy" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Happy" and explain the corresponding effect on your approval rating
-    approvalEffect: 4
-  - headline: '"Mad" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Mad" and explain the corresponding effect on your approval rating
+  - headline: Share the parks
+    subheading: '"Parks are a space for all of us," says White Doghouse spokesperson,
+      "and that means sharing with the squirrels who have lived in those trees for
+      generations."'
+    approvalEffect: 0
+  - headline: War on squirrels
+    subheading: President takes an aggressive stance, committing to chase down all
+      squirrels; some worry this will only cause greater disturbance in parks nationwide.
     approvalEffect: 3
-  - headline: '"Potty" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Potty" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
-  - headline: '"Love You" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Love You" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
-  - headline: '"Nap" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Nap" and explain the corresponding effect on your approval rating
+  - headline: Marking territory
+    subheading: President personally deploys first scent marker in a new initiative;
+      "These squirrels need to learn that our parks belong to us." Strong scent of
+      urine not a concern.
+    approvalEffect: 4
+  - headline: Parks are for squirrels
+    subheading: Woodland creatures lobby celebrates as President announces Squirrel
+      Friendship Week, aiming to smooth over cohabitation tensions.
     approvalEffect: 2
-  - headline: '"Treat" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Treat" and explain the corresponding effect on your approval rating
+  - headline: White doghouse silent on squirrels
+    subheading: Parkgoers shake their heads as President sits on paws; "Maybe it's
+      not a major issue to the President, but it's a mild annoyance to me, and I'm
+      ready to kill."
+    approvalEffect: 3
+  - headline: Parks gone nuts!
+    subheading: President announces food subsidies for squirrels. "Rather than criminalizing
+      snack-seeking behavior, this initiative aims to make it unnecessary."
     approvalEffect: 1
