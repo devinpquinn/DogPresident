@@ -282,9 +282,10 @@ public class PawManager : MonoBehaviour
 
     private IEnumerator DisableTemporarily(GameObject target, float duration)
     {
-        target.SetActive(false);
+        Vector3 originalScale = target.transform.localScale;
+        target.transform.localScale = Vector3.one;
         yield return new WaitForSeconds(duration);
-        target.SetActive(true);
+        target.transform.localScale = originalScale;
     }
 
     private IEnumerator PlayButtonClipDelayed(AudioClip clip)
