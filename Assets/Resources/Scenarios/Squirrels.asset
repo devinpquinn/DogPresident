@@ -16,7 +16,7 @@ MonoBehaviour:
     parks who wish to eat their lunches in peace.
   responses:
   - headline: Share the parks
-    subheading: '"Parks are a space for all of us," says White Doghouse spokesperson,
+    subheading: '"Parks are a space for all of us," says presidential spokesperson,
       "and that means sharing with the squirrels who have lived in those trees for
       generations."'
     approvalEffect: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     subheading: Woodland creatures lobby celebrates as President announces Squirrel
       Friendship Week, aiming to smooth over cohabitation tensions.
     approvalEffect: 2
-  - headline: White doghouse silent on squirrels
+  - headline: Prez silent on squirrels
     subheading: Parkgoers shake their heads as President sits on paws; "Maybe it's
       not a major issue to the President, but it's a mild annoyance to me, and I'm
       ready to kill."

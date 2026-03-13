@@ -30,7 +30,14 @@ public class NewspaperManager : MonoBehaviour
     public TextMeshProUGUI headlineText;
     public TextMeshProUGUI subheadingText;
     public TextMeshProUGUI approvalRatingText;
+    public float randomRotationRange = 10f;
     // -------------------------------------------
+
+    private float GetRandomZ()
+    {
+        float range = Mathf.Abs(randomRotationRange);
+        return Random.Range(-range, range);
+    }
 
     void Awake()
     {
@@ -39,8 +46,8 @@ public class NewspaperManager : MonoBehaviour
 
     void Start()
     {
-        // Randomize this GameObject's Z rotation between -10 and 10 degrees
-        float randomZ = Random.Range(-10f, 10f);
+        // Randomize this GameObject's Z rotation using inspector-configured range
+        float randomZ = GetRandomZ();
         transform.localEulerAngles = new Vector3(
             transform.localEulerAngles.x,
             transform.localEulerAngles.y,
@@ -65,8 +72,8 @@ public class NewspaperManager : MonoBehaviour
         // Play the newspaper sound
         audioSource.PlayOneShot(newspaperSound);
 
-        // Randomize this GameObject's Z rotation between -10f, 10f each time animation starts
-        float randomZ = Random.Range(-10f, 10f);
+        // Randomize this GameObject's Z rotation using inspector-configured range
+        float randomZ = GetRandomZ();
         transform.localEulerAngles = new Vector3(
             transform.localEulerAngles.x,
             transform.localEulerAngles.y,
@@ -175,7 +182,7 @@ public class NewspaperManager : MonoBehaviour
             }
         }
         // Optionally reset this GameObject's rotation
-        float randomZ = Random.Range(-10f, 10f);
+        float randomZ = GetRandomZ();
         transform.localEulerAngles = new Vector3(
             transform.localEulerAngles.x,
             transform.localEulerAngles.y,

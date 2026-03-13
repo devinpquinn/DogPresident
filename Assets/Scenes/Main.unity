@@ -2698,7 +2698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96, y: 175}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 1080, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535194068
@@ -2729,6 +2729,7 @@ MonoBehaviour:
   headlineText: {fileID: 654305356}
   subheadingText: {fileID: 552163693}
   approvalRatingText: {fileID: 1442322722}
+  randomRotationRange: 5
 --- !u!82 &1535194069
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2966,7 +2967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: 0, y: 245}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1702008453
@@ -3328,8 +3329,8 @@ MonoBehaviour:
   buttonClipDelay: 0.5
   pitchVariation: 0.1
   backgroundRect: {fileID: 13835231}
-  parallaxMaxOffset: 5
-  parallaxMaxVerticalOffset: 10
+  parallaxMaxOffset: 0
+  parallaxMaxVerticalOffset: 0
   parallaxLerpSpeed: 5
   buttonDownClip: {fileID: 8300000, guid: 8da3f9c58c95aff408f0bcae723e5175, type: 3}
   buttonClips:
