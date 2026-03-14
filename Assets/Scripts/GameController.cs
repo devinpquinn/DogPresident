@@ -120,7 +120,7 @@ public class GameController : MonoBehaviour
             yield return StartCoroutine(newspaperManager.MoveParentOffscreen());
             
             // 10. Wait
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             // 10.5. Shift background hue slightly for the next round
             StartCoroutine(LerpBackgroundHue());
