@@ -69,9 +69,4 @@ public class ScenarioManager : MonoBehaviour
         Debug.Log("Approval Effect: " + response.approvalEffect);
         AdvanceToNextScenario();
     }
-    
-    public int GetMonthNumber()
-    {
-        return currentScenarioIndex + 1; // +1 because index starts at 0
-    }
 }

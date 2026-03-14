@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public float hueLerpDuration = 1f;
     public Color[] backgroundColors;
     public TextMeshProUGUI headerText;
+    private int turnNumber = 1;
 
     private Scenario currentScenario;
 
@@ -133,6 +134,7 @@ public class GameController : MonoBehaviour
             currentScenario = null;
             
             // Update header text with new month and approval rating
+            turnNumber++;
             UpdateHeaderText();
         }
     }
@@ -190,7 +192,7 @@ public class GameController : MonoBehaviour
         // In the format "Month 1 - Approval Rating 50%"
         if (headerText != null)
         {
-            headerText.text = $"Month {scenarioManager.GetMonthNumber()} - Approval Rating {approvalRating}%";
+            headerText.text = $"Month {turnNumber} - Approval Rating {approvalRating}%";
         }
 
     }
