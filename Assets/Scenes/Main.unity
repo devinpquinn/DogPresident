@@ -3349,8 +3349,8 @@ MonoBehaviour:
   buttonClipDelay: 0.5
   pitchVariation: 0.1
   backgroundRect: {fileID: 13835231}
-  parallaxMaxOffset: 0
-  parallaxMaxVerticalOffset: 0
+  parallaxMaxOffset: 5
+  parallaxMaxVerticalOffset: 10
   parallaxLerpSpeed: 5
   buttonDownClip: {fileID: 8300000, guid: 8da3f9c58c95aff408f0bcae723e5175, type: 3}
   buttonClips:
