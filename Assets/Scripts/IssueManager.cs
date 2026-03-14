@@ -7,10 +7,13 @@ public class IssueManager : MonoBehaviour
     public TextMeshProUGUI issueText;
     private CanvasGroup issueCanvasGroup;
     private float fadeDuration = 0.5f;
+    private AudioSource audioSource;
+    public AudioClip issueAppearSound;
 
     private void Awake()
     {
         issueCanvasGroup = GetComponent<CanvasGroup>();
+        audioSource = GetComponent<AudioSource>();
 
         if (issueCanvasGroup == null && issueText != null)
         {
@@ -26,6 +29,11 @@ public class IssueManager : MonoBehaviour
     public IEnumerator DisplayIssue(string issue)
     {
         issueText.text = issue;
+        if (audioSource != null && issueAppearSound != null)
+        {
+            audioSource.PlayOneShot(issueAppearSound);
+        }
+
         yield return FadeCanvasGroup(1f);
     }
     
