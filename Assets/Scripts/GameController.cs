@@ -74,14 +74,11 @@ public class GameController : MonoBehaviour
 
             // 3. Fade in the issue text for the current scenario
             yield return StartCoroutine(issueManager.DisplayIssue(currentScenario.promptText));
-            
-            // 4. Wait
-            yield return new WaitForSeconds(0.5f);
 
-            // 5. Set paw live and tracking
+            // 4. Set paw live and tracking
             pawManager.SetLive(true);
 
-            // 6. Wait for player to slam a button (wait for slam and get index)
+            // 5. Wait for player to slam a button (wait for slam and get index)
             int chosenResponse = -1;
             waitingForSlam = true;
             pawManager.OnButtonSlammed = (index) => { chosenResponse = index; waitingForSlam = false; };
@@ -90,14 +87,11 @@ public class GameController : MonoBehaviour
             // Wait for the slam animation (including return) to finish
             yield return StartCoroutine(pawManager.WaitForSlamComplete());
 
-            // 7. Set paw not live or tracking, then fade out the issue text
+            // 6. Set paw not live or tracking, then fade out the issue text
             pawManager.SetLive(false);
             yield return StartCoroutine(issueManager.HideIssue());
-            
-            // 7.5. Wait
-            yield return new WaitForSeconds(0.5f);
 
-            // 8. Show newspaper with result
+            // 7. Show newspaper with result
             Response response = currentScenario.responses[chosenResponse];
 
             // Apply approval effect
@@ -110,7 +104,7 @@ public class GameController : MonoBehaviour
             newspaperManager.approvalRatingText.text = $"{phrase} to {approvalRating} percent";
             StartCoroutine(newspaperManager.AnimateNewspaperIn());
 
-            // 9. Wait for player to click to continue
+            // 8. Wait for player to click to continue
             waitingForNewspaperClick = true;
             while (waitingForNewspaperClick)
             {
@@ -119,14 +113,14 @@ public class GameController : MonoBehaviour
                 yield return null;
             }
 
-            // 10. Move newspaper parent offscreen
+            // 9. Move newspaper parent offscreen
             yield return StartCoroutine(newspaperManager.MoveParentOffscreen());
             
-            // 10.5. Wait
+            // 10. Wait
             yield return new WaitForSeconds(0.5f);
 
-            // 10.75. Shift background hue slightly for the next round
-            yield return StartCoroutine(LerpBackgroundHue());
+            // 10.5. Shift background hue slightly for the next round
+            StartCoroutine(LerpBackgroundHue());
 
             // 11. Repeat
             currentScenario = null;
