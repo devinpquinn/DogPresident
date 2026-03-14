@@ -47,6 +47,8 @@ public class IssueManager : MonoBehaviour
         {
             audioSource.PlayOneShot(issueAppearSound);
         }
+        
+        yield return new WaitForSeconds(0.1f); // Small delay for sound effect
 
         SetAnchoredPositionX(baseAnchoredPosition.x - slideDistanceX);
 
