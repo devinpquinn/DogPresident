@@ -89,7 +89,10 @@ public class GameController : MonoBehaviour
 
             // 6. Set paw not live or tracking, then fade out the issue text
             pawManager.SetLive(false);
-            yield return StartCoroutine(issueManager.HideIssue());
+            StartCoroutine(issueManager.HideIssue());
+            
+            // 6.5. Wait a moment for the issue to fade out before showing the newspaper
+            yield return new WaitForSeconds(0.25f);
 
             // 7. Show newspaper with result
             Response response = currentScenario.responses[chosenResponse];
