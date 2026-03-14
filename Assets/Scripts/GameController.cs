@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Image backgroundImage;
     public float hueLerpDuration = 1f;
     public Color[] backgroundColors;
+    public TextMeshProUGUI headerText;
 
     private Scenario currentScenario;
 
@@ -129,6 +131,9 @@ public class GameController : MonoBehaviour
 
             // 11. Repeat
             currentScenario = null;
+            
+            // Update header text with new month and approval rating
+            UpdateHeaderText();
         }
     }
 
@@ -178,6 +183,16 @@ public class GameController : MonoBehaviour
 
         currentBackgroundColorIndex = nextIndex;
         backgroundImage.color = backgroundColors[currentBackgroundColorIndex];
+    }
+    
+    private void UpdateHeaderText()
+    {
+        // In the format "Month 1 - Approval Rating 50%"
+        if (headerText != null)
+        {
+            headerText.text = $"Month {scenarioManager.GetMonthNumber()} - Approval Rating {approvalRating}%";
+        }
+
     }
 
     // Called when scenario changes
