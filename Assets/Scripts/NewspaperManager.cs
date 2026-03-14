@@ -24,8 +24,6 @@ public class NewspaperManager : MonoBehaviour
 
     private bool isParentMoving = false;
 
-    public BriefingManager briefingManager; // Assign in inspector
-
     // --- Add these TextMeshProUGUI variables ---
     public TextMeshProUGUI headlineText;
     public TextMeshProUGUI subheadingText;
@@ -156,10 +154,8 @@ public class NewspaperManager : MonoBehaviour
         parentRect.anchoredPosition = targetPos;
         isParentMoving = false;
 
-        // Reset both newspaper and briefing
+        // Reset newspaper
         ResetNewspaper();
-        if (briefingManager != null)
-            briefingManager.ResetBriefing();
     }
 
     public void ResetNewspaper()
@@ -188,5 +184,9 @@ public class NewspaperManager : MonoBehaviour
             transform.localEulerAngles.y,
             randomZ
         );
+        if(parentRect != null)
+        {
+            parentRect.anchoredPosition = Vector2.zero;
+        }
     }
 }
