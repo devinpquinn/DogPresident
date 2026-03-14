@@ -710,7 +710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &487067930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1544,9 +1544,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawManager: {fileID: 1913209711}
   scenarioManager: {fileID: 1261974613}
-  briefingManager: {fileID: 487067931}
+  issueManager: {fileID: 2059341131}
   newspaperManager: {fileID: 1535194068}
-  backgroundCamera: {fileID: 0}
+  backgroundCamera: {fileID: 519420031}
   hueLerpDuration: 1
   backgroundColors:
   - {r: 0.2784314, g: 0.34836596, b: 0.69803923, a: 1}
@@ -2137,7 +2137,7 @@ GameObject:
   - component: {fileID: 1085995801}
   - component: {fileID: 1085995800}
   m_Layer: 5
-  m_Name: BriefingText
+  m_Name: IssueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Briefing text goes here.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4347cba1300a413478604abf70715a53, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 4347cba1300a413478604abf70715a53, type: 2}
@@ -3905,8 +3905,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2059341130}
+  - component: {fileID: 2059341132}
+  - component: {fileID: 2059341131}
   m_Layer: 5
-  m_Name: Briefing
+  m_Name: Issue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3932,6 +3934,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2059341131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059341129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9a319f5ffd9b244a13e03ca9f90b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IssueManager
+  issueText: {fileID: 1085995800}
+--- !u!225 &2059341132
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059341129}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2091028742
 GameObject:
   m_ObjectHideFlags: 0

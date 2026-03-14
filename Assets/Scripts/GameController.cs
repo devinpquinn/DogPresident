@@ -5,13 +5,12 @@ public class GameController : MonoBehaviour
 {
     public PawManager pawManager;
     public ScenarioManager scenarioManager;
-    public BriefingManager briefingManager;
+    public IssueManager issueManager;
     public NewspaperManager newspaperManager;
     public Camera backgroundCamera;
     public float hueLerpDuration = 1f;
     public Color[] backgroundColors;
 
-    private int scenariosPlayed = 0;
     private Scenario currentScenario;
 
     private bool waitingForSlam = false;
@@ -73,16 +72,10 @@ public class GameController : MonoBehaviour
             // Wait for scenario to be loaded and event to fire
             yield return new WaitUntil(() => currentScenario != null);
 
-            // 3. Slide in briefing, show scenario number
-            scenariosPlayed++;
-            briefingManager.scenarioNumberText.text = scenariosPlayed.ToString();
-            briefingManager.promptText.text = ""; // Clear until open
-            yield return StartCoroutine(briefingManagerSlideIn());
-
-            // 4. Set prompt text
-            briefingManager.promptText.text = currentScenario.promptText;
+            // 3. Fade in the issue text for the current scenario
+            yield return StartCoroutine(issueManager.DisplayIssue(currentScenario.promptText));
             
-            // 4.5. Wait
+            // 4. Wait
             yield return new WaitForSeconds(0.5f);
 
             // 5. Set paw live and tracking
@@ -97,8 +90,9 @@ public class GameController : MonoBehaviour
             // Wait for the slam animation (including return) to finish
             yield return StartCoroutine(pawManager.WaitForSlamComplete());
 
-            // 7. Set paw not live or tracking
+            // 7. Set paw not live or tracking, then fade out the issue text
             pawManager.SetLive(false);
+            yield return StartCoroutine(issueManager.HideIssue());
             
             // 7.5. Wait
             yield return new WaitForSeconds(0.5f);
@@ -194,15 +188,6 @@ public class GameController : MonoBehaviour
 
         currentBackgroundColorIndex = nextIndex;
         backgroundCamera.backgroundColor = backgroundColors[currentBackgroundColorIndex];
-    }
-
-    // Helper to wait for briefing slide in
-    IEnumerator briefingManagerSlideIn()
-    {
-        // Simulate pressing space to slide in
-        briefingManager.StartCoroutine("SlideIn");
-        // Wait for folder to open (wait for the open GameObject to be active)
-        yield return new WaitUntil(() => briefingManager.folderOpen.activeSelf);
     }
 
     // Called when scenario changes
