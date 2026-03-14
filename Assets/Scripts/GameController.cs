@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using Microsoft.Unity.VisualStudio.Editor;
 
 public class GameController : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class GameController : MonoBehaviour
     public ScenarioManager scenarioManager;
     public IssueManager issueManager;
     public NewspaperManager newspaperManager;
-    public Camera backgroundCamera;
+    public UnityEngine.UI.Image backgroundImage;
     public float hueLerpDuration = 1f;
     public Color[] backgroundColors;
 
@@ -132,22 +134,13 @@ public class GameController : MonoBehaviour
 
     private void InitializeBackgroundHue()
     {
-        if (backgroundCamera == null)
-            backgroundCamera = Camera.main;
-
-        if (backgroundCamera == null)
-            return;
-
-        if (backgroundColors == null || backgroundColors.Length == 0)
-            return;
-
         currentBackgroundColorIndex = Random.Range(0, backgroundColors.Length);
-        backgroundCamera.backgroundColor = backgroundColors[currentBackgroundColorIndex];
+        backgroundImage.color = backgroundColors[currentBackgroundColorIndex];
     }
 
     private IEnumerator LerpBackgroundHue()
     {
-        if (backgroundCamera == null)
+        if (backgroundImage == null)
             yield break;
 
         if (backgroundColors == null || backgroundColors.Length == 0)
@@ -155,7 +148,7 @@ public class GameController : MonoBehaviour
 
         if (backgroundColors.Length == 1)
         {
-            backgroundCamera.backgroundColor = backgroundColors[0];
+            backgroundImage.color = backgroundColors[0];
             currentBackgroundColorIndex = 0;
             yield break;
         }
@@ -178,13 +171,13 @@ public class GameController : MonoBehaviour
         while (elapsed < hueLerpDuration)
         {
             float t = hueLerpDuration > 0f ? elapsed / hueLerpDuration : 1f;
-            backgroundCamera.backgroundColor = Color.Lerp(startColor, targetColor, t);
+            backgroundImage.color = Color.Lerp(startColor, targetColor, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         currentBackgroundColorIndex = nextIndex;
-        backgroundCamera.backgroundColor = backgroundColors[currentBackgroundColorIndex];
+        backgroundImage.color = backgroundColors[currentBackgroundColorIndex];
     }
 
     // Called when scenario changes
