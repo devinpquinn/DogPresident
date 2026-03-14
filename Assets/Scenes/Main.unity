@@ -3095,7 +3095,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IssueManager
   issueText: {fileID: 1085995800}
-  issueAppearSound: {fileID: 8300000, guid: 888c9e0e23831d7478ac4134127676df, type: 3}
+  slideDistanceX: 300
+  issueAppearSound: {fileID: 8300000, guid: a3f1d8eccfabaeb49b233ad849b1512d, type: 3}
 --- !u!225 &2059341132
 CanvasGroup:
   m_ObjectHideFlags: 0
