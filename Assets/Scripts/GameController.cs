@@ -57,9 +57,6 @@ public class GameController : MonoBehaviour
 
         // Start the loop
         StartCoroutine(GameplayLoop());
-        
-        // Hide cursor
-        Cursor.visible = false;
 
         InitializeBackgroundHue();
     }
