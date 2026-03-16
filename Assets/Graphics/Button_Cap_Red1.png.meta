@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a463b10df6c4ace42a9a2cccc6f0fdc4
+guid: 18f5a0e9a156a654ca0523f85a6c2f36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5596172817692391273
-    second: Button_Cap_Blue1_0
+      213: 3627358101866456234
+    second: Button_Cap_Red1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_Cap_Blue1_0
+      name: Button_Cap_Red1_0
       rect:
         serializedVersion: 2
         x: 147
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9677044278999ad40800000000000000
-      internalID: 5596172817692391273
+      spriteID: aa4a2ee99f6f65230800000000000000
+      internalID: 3627358101866456234
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Button_Cap_Blue1_0: 5596172817692391273
+      Button_Cap_Red1_0: 3627358101866456234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

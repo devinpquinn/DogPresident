@@ -1042,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 3578481954214180425, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 582540a76020a8040894d438359730bd, type: 3}
+      objectReference: {fileID: 21300000, guid: a463b10df6c4ace42a9a2cccc6f0fdc4, type: 3}
     - target: {fileID: 3936667415745389711, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 700
