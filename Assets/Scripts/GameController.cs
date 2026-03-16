@@ -12,7 +12,8 @@ public class GameController : MonoBehaviour
     public NewspaperManager newspaperManager;
     public UnityEngine.UI.Image backgroundImage;
     public float hueLerpDuration = 1f;
-    public Color[] backgroundColors;
+    public Color minApprovalColor = new Color(0.8f, 0.2f, 0.2f);
+    public Color maxApprovalColor = new Color(0.2f, 0.8f, 0.2f);
     public TextMeshProUGUI headerText;
     private int turnNumber = 1;
 
@@ -22,9 +23,6 @@ public class GameController : MonoBehaviour
     private bool waitingForNewspaperClick = false;
 
     private int approvalRating = 50; // Start at 50%
-
-    private int currentBackgroundColorIndex = 0;
-    private int backgroundColorDirection = 1;
 
     private System.Random rng = new System.Random();
 
@@ -138,8 +136,10 @@ public class GameController : MonoBehaviour
 
     private void InitializeBackgroundHue()
     {
-        currentBackgroundColorIndex = Random.Range(0, backgroundColors.Length);
-        backgroundImage.color = backgroundColors[currentBackgroundColorIndex];
+        if (backgroundImage == null)
+            return;
+
+        backgroundImage.color = GetColorForApprovalRating();
     }
 
     private IEnumerator LerpBackgroundHue()
@@ -147,29 +147,8 @@ public class GameController : MonoBehaviour
         if (backgroundImage == null)
             yield break;
 
-        if (backgroundColors == null || backgroundColors.Length == 0)
-            yield break;
-
-        if (backgroundColors.Length == 1)
-        {
-            backgroundImage.color = backgroundColors[0];
-            currentBackgroundColorIndex = 0;
-            yield break;
-        }
-
-        int nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
-        if (nextIndex >= backgroundColors.Length)
-        {
-            backgroundColorDirection = -1;
-            nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
-        }
-        else if (nextIndex < 0)
-        {
-            backgroundColorDirection = 1;
-            nextIndex = currentBackgroundColorIndex + backgroundColorDirection;
-        }
-        Color startColor = backgroundColors[currentBackgroundColorIndex];
-        Color targetColor = backgroundColors[nextIndex];
+        Color startColor = backgroundImage.color;
+        Color targetColor = GetColorForApprovalRating();
 
         float elapsed = 0f;
         while (elapsed < hueLerpDuration)
@@ -180,8 +159,13 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-        currentBackgroundColorIndex = nextIndex;
-        backgroundImage.color = backgroundColors[currentBackgroundColorIndex];
+        backgroundImage.color = targetColor;
+    }
+
+    private Color GetColorForApprovalRating()
+    {
+        float approval01 = Mathf.Clamp01(approvalRating / 100f);
+        return Color.Lerp(minApprovalColor, maxApprovalColor, approval01);
     }
     
     private void UpdateHeaderText()

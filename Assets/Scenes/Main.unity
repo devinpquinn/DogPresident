@@ -1555,11 +1555,8 @@ MonoBehaviour:
   newspaperManager: {fileID: 1535194068}
   backgroundImage: {fileID: 1305787245}
   hueLerpDuration: 1
-  backgroundColors:
-  - {r: 0.2784314, g: 0.34836596, b: 0.69803923, a: 1}
-  - {r: 0.2784314, g: 0.2784314, b: 0.69803923, a: 1}
-  - {r: 0.34836596, g: 0.2784314, b: 0.69803923, a: 1}
-  - {r: 0.41830054, g: 0.2784314, b: 0.69803923, a: 1}
+  minApprovalColor: {r: 0.41960785, g: 0.2784314, b: 0.69803923, a: 1}
+  maxApprovalColor: {r: 0.2784314, g: 0.34901962, b: 0.69803923, a: 1}
   headerText: {fileID: 998188644}
 --- !u!4 &639835162
 Transform:
@@ -2941,7 +2938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34901962, g: 0.2784314, b: 0.69803923, a: 1}
+  m_Color: {r: 0.31339878, g: 0.2784314, b: 0.69803923, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
