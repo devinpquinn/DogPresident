@@ -17,6 +17,7 @@ public class PawManager : MonoBehaviour
     public float buttonClipDelay = 0.5f; // Delay before playing per-button clip
     public float pitchVariation = 0.1f; // Amount of pitch variation
 
+    public bool backgroundParallaxEnabled = true; // Whether to enable background parallax
     public RectTransform backgroundRect; // Reference to the background RectTransform
     public float parallaxMaxOffset = 50f; // Maximum offset for the parallax effect
     public float parallaxMaxVerticalOffset = 20f; // Maximum vertical offset for the parallax effect
@@ -144,12 +145,15 @@ public class PawManager : MonoBehaviour
             float normalizedCursorY = Mathf.InverseLerp(0f, screenHeight, Input.mousePosition.y);
             float targetOffsetY = normalizedCursorY * parallaxMaxVerticalOffset * -1f;
 
-            // Smoothly lerp the background's position to the target offset
-            Vector2 targetPosition = new Vector2(
-                backgroundInitialPosition.x + targetOffsetX,
-                backgroundInitialPosition.y + targetOffsetY
-            );
-            backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
+            if (backgroundParallaxEnabled)
+            {
+                // Smoothly lerp the background's position to the target offset
+                Vector2 targetPosition = new Vector2(
+                    backgroundInitialPosition.x + targetOffsetX,
+                    backgroundInitialPosition.y + targetOffsetY
+                );
+                backgroundRect.anchoredPosition = Vector2.Lerp(backgroundRect.anchoredPosition, targetPosition, parallaxLerpSpeed * Time.deltaTime);
+            }
 
             // Apply a parallax effect to the child paw's global X offset relative to its base offset
             float childParallaxOffset = normalizedCursorX * (parallaxMaxOffset * 0.05f); // Adjust the multiplier for subtle movement
@@ -198,7 +202,7 @@ public class PawManager : MonoBehaviour
         // Determine the slam target position based on whether a button will be hit
         Vector3 slamPosition = Vector3.zero;
         Vector3 slamScale = Vector3.one; // Scale down to 1 during the slam
-        
+
         // Change to "down" sprites
         if (mainSpriteRenderer != null && mainDownSprite != null)
             mainSpriteRenderer.sprite = mainDownSprite;
@@ -307,12 +311,12 @@ public class PawManager : MonoBehaviour
         // Wait until the slam is not in progress
         yield return new WaitUntil(() => !isSlamming);
     }
-    
+
     public void SetLive(bool state)
     {
         isLive = state;
         isTracking = state;
-        
+
         isSlamming = false; // Reset slamming state when setting live
         isMovingToClick = false; // Reset moving to click state
     }
