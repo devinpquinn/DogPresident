@@ -16,27 +16,27 @@ MonoBehaviour:
     parks who wish to eat their lunches in peace.
   responses:
   - headline: Share the parks
-    subheading: '"Parks are a space for all of us," says presidential spokesperson,
-      "and that means sharing with the squirrels who have lived in those trees for
-      generations."'
+    subheading: '"Parks are a space for all of us," says Mayoral spokesperson, "and
+      that means sharing stewardship with the squirrels who have lived in these trees
+      for generations."'
     approvalEffect: 0
   - headline: War on squirrels
-    subheading: President takes an aggressive stance, committing to chase down all
-      squirrels; some worry this will only cause greater disturbance in parks nationwide.
+    subheading: Mayor takes aggressive stance, committing to chase down all squirrels;
+      some worry this will only cause greater disturbance in parks.
     approvalEffect: 3
   - headline: Marking territory
-    subheading: President personally deploys first scent marker in a new initiative;
+    subheading: Mayor personally deploys first scent marker in a new initiative;
       "These squirrels need to learn that our parks belong to us." Strong scent of
       urine not a concern.
     approvalEffect: 4
   - headline: Parks are for squirrels
-    subheading: Woodland creatures lobby celebrates as President announces Squirrel
-      Friendship Week, aiming to smooth over cohabitation tensions.
+    subheading: Woodland creatures lobby celebrates as Mayor announces Squirrel Friendship
+      Week, aiming to smooth over cohabitation tensions.
     approvalEffect: 2
-  - headline: Prez silent on squirrels
-    subheading: Parkgoers shake their heads as President sits on paws; "Maybe it's
-      not a major issue to the President, but it's a mild annoyance to me, and I'm
-      ready to kill."
+  - headline: Mayor silent on squirrels
+    subheading: Parkgoers shake their heads as Mayor sits on paws; "Maybe it's not
+      a major issue to the Mayor, but it's a mild annoyance to me, and I'm ready
+      to kill."
     approvalEffect: 3
   - headline: Parks gone nuts!
     subheading: President announces food subsidies for squirrels. "Rather than criminalizing

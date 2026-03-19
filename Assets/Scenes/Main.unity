@@ -1162,7 +1162,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -1186,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -1492,7 +1492,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -1516,7 +1516,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -1863,7 +1863,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -1887,7 +1887,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -2282,7 +2282,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -2306,7 +2306,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -3714,7 +3714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dog President
+  m_text: Dog Mayor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
   m_sharedMaterial: {fileID: -4406428672775297824, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
@@ -3984,7 +3984,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -4008,7 +4008,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -4732,7 +4732,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.7490196
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor.b
@@ -4756,7 +4756,7 @@ PrefabInstance:
       objectReference: {fileID: 7160937738698009160, guid: b76c4cacf2ea515499ff903dd94dd856, type: 2}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3221225471
+      value: 2801795071
       objectReference: {fileID: 0}
     - target: {fileID: 4401327818342414370, guid: b58912621333e804cb6ca46eb116b39b, type: 3}
       propertyPath: m_hasFontAssetChanged
