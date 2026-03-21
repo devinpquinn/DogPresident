@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,12 +16,16 @@ public class GameController : MonoBehaviour
     public Color minApprovalColor = new Color(0.8f, 0.2f, 0.2f);
     public Color maxApprovalColor = new Color(0.2f, 0.8f, 0.2f);
     public TextMeshProUGUI headerText;
+    public GameObject gameOverPopup;
+    public TextMeshProUGUI gameOverHeaderText;
+    public Button restartButton;
     private int turnNumber = 1;
 
     private Scenario currentScenario;
 
     private bool waitingForSlam = false;
     private bool waitingForNewspaperClick = false;
+    private bool isGameOver = false;
 
     private int approvalRating = 50; // Start at 50%
 
@@ -53,10 +58,22 @@ public class GameController : MonoBehaviour
         scenarioManager.onScenarioChanged += OnScenarioChanged;
         scenarioManager.onResponsePlayed += OnResponsePlayed;
 
+        if (gameOverPopup != null)
+        {
+            gameOverPopup.SetActive(false);
+        }
+
+        if (restartButton != null)
+        {
+            restartButton.onClick.RemoveListener(RestartGame);
+            restartButton.onClick.AddListener(RestartGame);
+        }
+
         // Start the loop
         StartCoroutine(GameplayLoop());
 
         InitializeBackgroundHue();
+        UpdateHeaderText();
     }
 
     IEnumerator GameplayLoop()
@@ -114,6 +131,12 @@ public class GameController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                     waitingForNewspaperClick = false;
                 yield return null;
+            }
+
+            if (approvalRating == 0 || approvalRating == 100)
+            {
+                TriggerGameOver();
+                yield break;
             }
 
             // 9. Move newspaper parent offscreen
@@ -176,6 +199,31 @@ public class GameController : MonoBehaviour
             headerText.text = $"Month {turnNumber} - Approval Rating {approvalRating}%";
         }
 
+    }
+
+    private void TriggerGameOver()
+    {
+        if (isGameOver)
+            return;
+
+        isGameOver = true;
+        pawManager.SetLive(false);
+
+        if (gameOverHeaderText != null)
+        {
+            gameOverHeaderText.text = $"Game Over - {turnNumber} Months In Office";
+        }
+
+        if (gameOverPopup != null)
+        {
+            gameOverPopup.SetActive(true);
+        }
+    }
+
+    public void RestartGame()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
     }
 
     // Called when scenario changes

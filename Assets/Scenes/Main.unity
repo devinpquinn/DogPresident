@@ -1582,6 +1582,9 @@ MonoBehaviour:
   minApprovalColor: {r: 0.3019608, g: 0.08235294, b: 0.16470589, a: 1}
   maxApprovalColor: {r: 0.05490196, g: 0, b: 0.6745098, a: 1}
   headerText: {fileID: 998188644}
+  gameOverPopup: {fileID: 1906750647}
+  gameOverHeaderText: {fileID: 1113273452}
+  restartButton: {fileID: 6190767270179894654}
 --- !u!4 &639835162
 Transform:
   m_ObjectHideFlags: 0
@@ -2618,7 +2621,7 @@ GameObject:
   - component: {fileID: 1113273453}
   - component: {fileID: 1113273452}
   m_Layer: 5
-  m_Name: Header Text Center
+  m_Name: Game Over Header Text Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4076,7 +4079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1743087428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4116,7 +4119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
   m_sharedMaterial: {fileID: -4406428672775297824, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
@@ -5281,7 +5284,7 @@ GameObject:
   - component: {fileID: 3951549377286933254}
   - component: {fileID: 6190767270179894654}
   m_Layer: 5
-  m_Name: OkayButton
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
