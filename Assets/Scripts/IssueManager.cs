@@ -61,6 +61,21 @@ public class IssueManager : MonoBehaviour
         issueText.text = "";
     }
 
+    public void ResetIssueImmediate()
+    {
+        if (issueText != null)
+        {
+            issueText.text = "";
+        }
+
+        if (issueCanvasGroup != null)
+        {
+            issueCanvasGroup.alpha = 0f;
+        }
+
+        SetAnchoredPositionX(baseAnchoredPosition.x);
+    }
+
     private IEnumerator FadeAndSlide(float targetAlpha, float targetX)
     {
         if (issueCanvasGroup == null)

@@ -52,6 +52,12 @@ public class ScenarioManager : MonoBehaviour
         onScenarioChanged?.Invoke(currentScenario);
     }
 
+    public void ResetScenarioPool()
+    {
+        LoadAndShuffleScenarios();
+        currentScenario = null;
+    }
+
     public void PlayResponse(int responseIndex)
     {
         if (currentScenario == null || responseIndex < 0 || responseIndex >= currentScenario.responses.Count)

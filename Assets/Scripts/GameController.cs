@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -223,8 +222,57 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
-        Scene activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.name);
+        StopAllCoroutines();
+
+        if (pawManager != null)
+        {
+            pawManager.StopAllCoroutines();
+            pawManager.OnButtonSlammed = null;
+            pawManager.SetLive(false);
+        }
+
+        if (issueManager != null)
+        {
+            issueManager.StopAllCoroutines();
+            issueManager.ResetIssueImmediate();
+        }
+
+        if (newspaperManager != null)
+        {
+            newspaperManager.StopAllCoroutines();
+            newspaperManager.ResetNewspaper();
+
+            if (newspaperManager.headlineText != null)
+                newspaperManager.headlineText.text = "";
+
+            if (newspaperManager.subheadingText != null)
+                newspaperManager.subheadingText.text = "";
+
+            if (newspaperManager.approvalRatingText != null)
+                newspaperManager.approvalRatingText.text = "";
+        }
+
+        if (scenarioManager != null)
+        {
+            scenarioManager.ResetScenarioPool();
+        }
+
+        currentScenario = null;
+        waitingForSlam = false;
+        waitingForNewspaperClick = false;
+        isGameOver = false;
+        approvalRating = 50;
+        turnNumber = 1;
+
+        if (gameOverPopup != null)
+        {
+            gameOverPopup.SetActive(false);
+        }
+
+        InitializeBackgroundHue();
+        UpdateHeaderText();
+
+        StartCoroutine(GameplayLoop());
     }
 
     // Called when scenario changes
