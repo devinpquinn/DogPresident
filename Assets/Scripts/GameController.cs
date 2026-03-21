@@ -133,12 +133,6 @@ public class GameController : MonoBehaviour
                 yield return null;
             }
 
-            if (approvalRating == 0 || approvalRating == 100)
-            {
-                TriggerGameOver();
-                yield break;
-            }
-
             // 9. Move newspaper parent offscreen
             yield return StartCoroutine(newspaperManager.MoveParentOffscreen());
             
@@ -154,6 +148,13 @@ public class GameController : MonoBehaviour
             // Update header text with new month and approval rating
             turnNumber++;
             UpdateHeaderText();
+            
+            // Check for game over conditions
+            if (approvalRating == 0 || approvalRating == 100)
+            {
+                TriggerGameOver();
+                yield break;
+            }
         }
     }
 
