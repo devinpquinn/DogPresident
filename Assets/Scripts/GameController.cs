@@ -422,27 +422,32 @@ public class GameController : MonoBehaviour
             yield break;
         }
 
-        float elapsed = 0f;
-        while (elapsed < graphAnimDuration)
+        int sectionCount = count - 1;
+        float sectionDuration = graphAnimDuration / sectionCount;
+
+        for (int section = 0; section < sectionCount; section++)
         {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / graphAnimDuration);
-            float virtualIndex = t * (count - 1);
-            int fullPoints = Mathf.FloorToInt(virtualIndex);
-            float frac = virtualIndex - fullPoints;
+            float elapsed = 0f;
+            while (elapsed < sectionDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = sectionDuration > 0f ? Mathf.Clamp01(elapsed / sectionDuration) : 1f;
 
-            // positionCount = fully drawn points + 1 animated tip
-            int newCount = Mathf.Min(fullPoints + 2, count);
-            lineRenderer.positionCount = newCount;
+                // positionCount = completed section points + current animated tip
+                int newCount = section + 2;
+                lineRenderer.positionCount = newCount;
 
-            for (int i = 0; i <= fullPoints && i < count; i++)
+                for (int i = 0; i <= section; i++)
+                    lineRenderer.SetPosition(i, positions[i]);
+
+                lineRenderer.SetPosition(section + 1, Vector3.Lerp(positions[section], positions[section + 1], t));
+                yield return null;
+            }
+
+            // Snap each completed section endpoint exactly
+            lineRenderer.positionCount = section + 2;
+            for (int i = 0; i <= section + 1; i++)
                 lineRenderer.SetPosition(i, positions[i]);
-
-            // Interpolate the live tip between the last full point and the next
-            if (fullPoints + 1 < count)
-                lineRenderer.SetPosition(fullPoints + 1, Vector3.Lerp(positions[fullPoints], positions[fullPoints + 1], frac));
-
-            yield return null;
         }
 
         // Snap to final state
