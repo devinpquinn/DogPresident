@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI gameOverHeaderText;
     public TextMeshProUGUI gameOverSubheaderText;
     public RectTransform graphArea;
-    public Color graphLineColor = Color.white;
     public float graphLineWidth = 6f;
+    public Material graphLineMaterial;
     public Button restartButton;
     private int turnNumber = 1;
 
@@ -393,11 +393,7 @@ public class GameController : MonoBehaviour
         lineRenderer.alignment = LineAlignment.TransformZ;
         lineRenderer.sortingOrder = 1;
 
-        Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
-        lineMaterial.color = graphLineColor;
-        lineRenderer.material = lineMaterial;
-        lineRenderer.startColor = graphLineColor;
-        lineRenderer.endColor = graphLineColor;
+        lineRenderer.material = graphLineMaterial;
 
         Rect rect = graphArea.rect;
         float xMin = rect.xMin;
