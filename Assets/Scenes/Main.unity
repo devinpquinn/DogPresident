@@ -1949,7 +1949,7 @@ MonoBehaviour:
   gameOverHeaderText: {fileID: 1113273452}
   gameOverSubheaderText: {fileID: 3522309044562988695}
   graphArea: {fileID: 1645462435}
-  graphLineWidth: 5
+  graphLineWidth: 10
   graphLineMaterial: {fileID: 2100000, guid: 48cdd1460a342e24baa16ca34feb3198, type: 2}
   restartButton: {fileID: 6190767270179894654}
 --- !u!4 &639835162
