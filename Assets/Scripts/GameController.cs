@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 
@@ -18,6 +19,9 @@ public class GameController : MonoBehaviour
     public GameObject gameOverPopup;
     public TextMeshProUGUI gameOverHeaderText;
     public TextMeshProUGUI gameOverSubheaderText;
+    public RectTransform graphArea;
+    public Color graphLineColor = Color.white;
+    public float graphLineWidth = 6f;
     public Button restartButton;
     private int turnNumber = 1;
 
@@ -28,6 +32,8 @@ public class GameController : MonoBehaviour
     private bool isGameOver = false;
 
     private int approvalRating = 50; // Start at 50%
+    private readonly List<int> approvalHistory = new List<int>();
+    private GameObject graphLineObject;
 
     private System.Random rng = new System.Random();
 
@@ -72,6 +78,7 @@ public class GameController : MonoBehaviour
         // Start the loop
         StartCoroutine(GameplayLoop());
 
+        ResetApprovalHistory();
         InitializeBackgroundHue();
         UpdateHeaderText();
     }
@@ -117,6 +124,7 @@ public class GameController : MonoBehaviour
             // Apply approval effect
             int delta = GetApprovalDelta(response.approvalEffect);
             approvalRating = Mathf.Clamp(approvalRating + delta, 0, 100);
+            approvalHistory.Add(approvalRating);
 
             string phrase = GetApprovalPhrase(response.approvalEffect, delta);
             newspaperManager.headlineText.text = response.headline;
@@ -224,6 +232,8 @@ public class GameController : MonoBehaviour
         {
             gameOverPopup.SetActive(true);
         }
+
+        DrawApprovalGraph();
     }
     
     private string GetGameOverSubheader()
@@ -281,6 +291,8 @@ public class GameController : MonoBehaviour
         isGameOver = false;
         approvalRating = 50;
         turnNumber = 1;
+        ResetApprovalHistory();
+        ClearApprovalGraph();
 
         if (gameOverPopup != null)
         {
@@ -352,6 +364,65 @@ public class GameController : MonoBehaviour
         else
         {
             return "Approval rating";
+        }
+    }
+
+    private void ResetApprovalHistory()
+    {
+        approvalHistory.Clear();
+        approvalHistory.Add(approvalRating);
+    }
+
+    private void DrawApprovalGraph()
+    {
+        if (graphArea == null || approvalHistory.Count == 0)
+            return;
+
+        ClearApprovalGraph();
+
+        graphLineObject = new GameObject("ApprovalGraphLine", typeof(LineRenderer));
+        graphLineObject.transform.SetParent(graphArea, false);
+
+        LineRenderer lineRenderer = graphLineObject.GetComponent<LineRenderer>();
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.positionCount = approvalHistory.Count;
+        lineRenderer.startWidth = graphLineWidth;
+        lineRenderer.endWidth = graphLineWidth;
+        lineRenderer.numCapVertices = 4;
+        lineRenderer.numCornerVertices = 4;
+        lineRenderer.alignment = LineAlignment.TransformZ;
+        lineRenderer.sortingOrder = 1;
+
+        Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
+        lineMaterial.color = graphLineColor;
+        lineRenderer.material = lineMaterial;
+        lineRenderer.startColor = graphLineColor;
+        lineRenderer.endColor = graphLineColor;
+
+        Rect rect = graphArea.rect;
+        float xMin = rect.xMin;
+        float xMax = rect.xMax;
+        float yMin = rect.yMin;
+        float yMax = rect.yMax;
+
+        for (int i = 0; i < approvalHistory.Count; i++)
+        {
+            float xT = approvalHistory.Count > 1 ? (float)i / (approvalHistory.Count - 1) : 0.5f;
+            float yT = Mathf.Clamp01(approvalHistory[i] / 100f);
+
+            float x = Mathf.Lerp(xMin, xMax, xT);
+            float y = Mathf.Lerp(yMin, yMax, yT);
+
+            lineRenderer.SetPosition(i, new Vector3(x, y, 0f));
+        }
+    }
+
+    private void ClearApprovalGraph()
+    {
+        if (graphLineObject != null)
+        {
+            Destroy(graphLineObject);
+            graphLineObject = null;
         }
     }
 }
