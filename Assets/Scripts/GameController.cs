@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI gameOverSubheaderText;
     public RectTransform graphArea;
     public float graphLineWidth = 6f;
+    public float graphAnimDuration = 1f;
     public Material graphLineMaterial;
     public Button restartButton;
     private int turnNumber = 1;
@@ -233,7 +234,7 @@ public class GameController : MonoBehaviour
             gameOverPopup.SetActive(true);
         }
 
-        DrawApprovalGraph();
+        StartCoroutine(DrawApprovalGraph());
     }
     
     private string GetGameOverSubheader()
@@ -373,10 +374,10 @@ public class GameController : MonoBehaviour
         approvalHistory.Add(approvalRating);
     }
 
-    private void DrawApprovalGraph()
+    private IEnumerator DrawApprovalGraph()
     {
         if (graphArea == null || approvalHistory.Count == 0)
-            return;
+            yield break;
 
         ClearApprovalGraph();
 
@@ -385,32 +386,69 @@ public class GameController : MonoBehaviour
 
         LineRenderer lineRenderer = graphLineObject.GetComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
-        lineRenderer.positionCount = approvalHistory.Count;
+        lineRenderer.positionCount = 1;
         lineRenderer.startWidth = graphLineWidth;
         lineRenderer.endWidth = graphLineWidth;
         lineRenderer.numCapVertices = 4;
         lineRenderer.numCornerVertices = 4;
         lineRenderer.alignment = LineAlignment.TransformZ;
         lineRenderer.sortingOrder = 1;
-
         lineRenderer.material = graphLineMaterial;
 
+        // Pre-compute all positions
         Rect rect = graphArea.rect;
         float xMin = rect.xMin;
         float xMax = rect.xMax;
         float yMin = rect.yMin;
         float yMax = rect.yMax;
+        int count = approvalHistory.Count;
 
-        for (int i = 0; i < approvalHistory.Count; i++)
+        Vector3[] positions = new Vector3[count];
+        for (int i = 0; i < count; i++)
         {
-            float xT = approvalHistory.Count > 1 ? (float)i / (approvalHistory.Count - 1) : 0.5f;
+            float xT = count > 1 ? (float)i / (count - 1) : 0.5f;
             float yT = Mathf.Clamp01(approvalHistory[i] / 100f);
-
-            float x = Mathf.Lerp(xMin, xMax, xT);
-            float y = Mathf.Lerp(yMin, yMax, yT);
-
-            lineRenderer.SetPosition(i, new Vector3(x, y, 0f));
+            positions[i] = new Vector3(Mathf.Lerp(xMin, xMax, xT), Mathf.Lerp(yMin, yMax, yT), 0f);
         }
+
+        // Place the first point immediately
+        lineRenderer.SetPosition(0, positions[0]);
+
+        if (count == 1 || graphAnimDuration <= 0f)
+        {
+            lineRenderer.positionCount = count;
+            for (int i = 0; i < count; i++)
+                lineRenderer.SetPosition(i, positions[i]);
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < graphAnimDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / graphAnimDuration);
+            float virtualIndex = t * (count - 1);
+            int fullPoints = Mathf.FloorToInt(virtualIndex);
+            float frac = virtualIndex - fullPoints;
+
+            // positionCount = fully drawn points + 1 animated tip
+            int newCount = Mathf.Min(fullPoints + 2, count);
+            lineRenderer.positionCount = newCount;
+
+            for (int i = 0; i <= fullPoints && i < count; i++)
+                lineRenderer.SetPosition(i, positions[i]);
+
+            // Interpolate the live tip between the last full point and the next
+            if (fullPoints + 1 < count)
+                lineRenderer.SetPosition(fullPoints + 1, Vector3.Lerp(positions[fullPoints], positions[fullPoints + 1], frac));
+
+            yield return null;
+        }
+
+        // Snap to final state
+        lineRenderer.positionCount = count;
+        for (int i = 0; i < count; i++)
+            lineRenderer.SetPosition(i, positions[i]);
     }
 
     private void ClearApprovalGraph()
