@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI headerText;
     public GameObject gameOverPopup;
     public TextMeshProUGUI gameOverHeaderText;
+    public TextMeshProUGUI gameOverSubheaderText;
     public Button restartButton;
     private int turnNumber = 1;
 
@@ -214,9 +215,26 @@ public class GameController : MonoBehaviour
             gameOverHeaderText.text = $"Game Over - {turnNumber} Months In Office";
         }
 
+        if (gameOverSubheaderText != null)
+        {
+            gameOverSubheaderText.text = GetGameOverSubheader();
+        }
+
         if (gameOverPopup != null)
         {
             gameOverPopup.SetActive(true);
+        }
+    }
+    
+    private string GetGameOverSubheader()
+    {
+        if(approvalRating == 100)
+        {
+            return "With your approval rating reaching unprecedented heights, you are constantly mobbed by adoring fans, making it impossible to perform the duties of your office.";
+        }
+        else
+        {
+            return "With your approval rating hitting rock bottom, you are hastily removed from office in disgrace. You return to a carefree life as a normal dog, free from the duties of office.";
         }
     }
 
