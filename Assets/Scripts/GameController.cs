@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     public Color minApprovalColor = new Color(0.8f, 0.2f, 0.2f);
     public Color maxApprovalColor = new Color(0.2f, 0.8f, 0.2f);
     public TextMeshProUGUI headerText;
-    public GameObject gameOverPopup;
+    public Animator gameOverPopup;
     public TextMeshProUGUI gameOverHeaderText;
     public TextMeshProUGUI gameOverSubheaderText;
     public RectTransform graphArea;
@@ -64,10 +64,10 @@ public class GameController : MonoBehaviour
         // Subscribe to scenario and response events
         scenarioManager.onScenarioChanged += OnScenarioChanged;
         scenarioManager.onResponsePlayed += OnResponsePlayed;
-
+        
         if (gameOverPopup != null)
         {
-            gameOverPopup.SetActive(false);
+            gameOverPopup.gameObject.SetActive(true);
         }
 
         if (restartButton != null)
@@ -82,6 +82,12 @@ public class GameController : MonoBehaviour
         ResetApprovalHistory();
         InitializeBackgroundHue();
         UpdateHeaderText();
+    }
+    
+    IEnumerator WaitAndStartGameplayLoop(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(GameplayLoop());
     }
 
     IEnumerator GameplayLoop()
@@ -231,7 +237,7 @@ public class GameController : MonoBehaviour
 
         if (gameOverPopup != null)
         {
-            gameOverPopup.SetActive(true);
+            gameOverPopup.SetTrigger("Show");
         }
 
         StartCoroutine(DrawApprovalGraph());
@@ -297,13 +303,13 @@ public class GameController : MonoBehaviour
 
         if (gameOverPopup != null)
         {
-            gameOverPopup.SetActive(false);
+            gameOverPopup.SetTrigger("Hide");
         }
 
         InitializeBackgroundHue();
         UpdateHeaderText();
 
-        StartCoroutine(GameplayLoop());
+        StartCoroutine(WaitAndStartGameplayLoop(0.5f));
     }
 
     // Called when scenario changes

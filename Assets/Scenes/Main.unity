@@ -2180,12 +2180,12 @@ MonoBehaviour:
   minApprovalColor: {r: 0.3019608, g: 0.08235294, b: 0.16470589, a: 1}
   maxApprovalColor: {r: 0.05490196, g: 0, b: 0.6745098, a: 1}
   headerText: {fileID: 998188644}
-  gameOverPopup: {fileID: 633830214}
+  gameOverPopup: {fileID: 633830218}
   gameOverHeaderText: {fileID: 1113273452}
   gameOverSubheaderText: {fileID: 3522309044562988695}
   graphArea: {fileID: 1645462435}
   graphLineWidth: 10
-  graphAnimDuration: 3
+  graphAnimDuration: 2
   graphLineMaterial: {fileID: 2100000, guid: 48cdd1460a342e24baa16ca34feb3198, type: 2}
   restartButton: {fileID: 6190767270179894654}
 --- !u!4 &639835162
