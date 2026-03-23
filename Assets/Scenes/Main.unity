@@ -1876,6 +1876,7 @@ GameObject:
   - component: {fileID: 633830215}
   - component: {fileID: 633830217}
   - component: {fileID: 633830216}
+  - component: {fileID: 633830218}
   m_Layer: 5
   m_Name: GameOverPopup
   m_TagString: Untagged
@@ -1941,6 +1942,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633830214}
   m_CullTransparentMesh: 1
+--- !u!95 &633830218
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633830214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a840608bc4c07e449ed398f7b2cbc46, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &639550144
 PrefabInstance:
   m_ObjectHideFlags: 0
