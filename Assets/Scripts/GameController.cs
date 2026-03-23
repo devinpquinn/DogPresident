@@ -423,31 +423,41 @@ public class GameController : MonoBehaviour
         }
 
         int sectionCount = count - 1;
-        float sectionDuration = graphAnimDuration / sectionCount;
+        float elapsed = 0f;
 
-        for (int section = 0; section < sectionCount; section++)
+        while (elapsed < graphAnimDuration)
         {
-            float elapsed = 0f;
-            while (elapsed < sectionDuration)
+            elapsed += Time.deltaTime;
+            float linearT = graphAnimDuration > 0f ? Mathf.Clamp01(elapsed / graphAnimDuration) : 1f;
+            float easedT = Mathf.SmoothStep(0f, 1f, linearT);
+
+            // Convert eased 0..1 progress into polyline section + local section t.
+            float sectionProgress = easedT * sectionCount;
+            int completedSections = Mathf.FloorToInt(sectionProgress);
+            float sectionT = sectionProgress - completedSections;
+
+            if (completedSections >= sectionCount)
             {
-                elapsed += Time.deltaTime;
-                float t = sectionDuration > 0f ? Mathf.Clamp01(elapsed / sectionDuration) : 1f;
-
-                // positionCount = completed section points + current animated tip
-                int newCount = section + 2;
-                lineRenderer.positionCount = newCount;
-
-                for (int i = 0; i <= section; i++)
+                lineRenderer.positionCount = count;
+                for (int i = 0; i < count; i++)
                     lineRenderer.SetPosition(i, positions[i]);
-
-                lineRenderer.SetPosition(section + 1, Vector3.Lerp(positions[section], positions[section + 1], t));
                 yield return null;
+                continue;
             }
 
-            // Snap each completed section endpoint exactly
-            lineRenderer.positionCount = section + 2;
-            for (int i = 0; i <= section + 1; i++)
+            // positionCount = completed section points + current animated tip
+            int newCount = completedSections + 2;
+            lineRenderer.positionCount = newCount;
+
+            for (int i = 0; i <= completedSections; i++)
                 lineRenderer.SetPosition(i, positions[i]);
+
+            lineRenderer.SetPosition(
+                completedSections + 1,
+                Vector3.Lerp(positions[completedSections], positions[completedSections + 1], sectionT)
+            );
+
+            yield return null;
         }
 
         // Snap to final state
