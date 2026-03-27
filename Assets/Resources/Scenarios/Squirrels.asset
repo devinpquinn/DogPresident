@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99535a87e8545149a6064a3e9ca9ebd, type: 3}
   m_Name: Squirrels
   m_EditorClassIdentifier: 
-  promptText: Rising squirrel populations have become a nuisance to some in city
-    parks who wish to eat their lunches in peace.
+  promptText: Snack-seeking squirrels have become a nuisance to some in city parks
+    who wish to eat their lunches in peace.
   responses:
   - headline: Share the parks
     subheading: '"Parks are a space for all of us," says Mayoral spokesperson, "and
@@ -30,8 +30,8 @@ MonoBehaviour:
       urine not a concern.
     approvalEffect: 4
   - headline: Parks are for squirrels
-    subheading: Woodland creatures lobby celebrates as Mayor announces Squirrel Friendship
-      Week, aiming to smooth over cohabitation tensions.
+    subheading: Mayor announces Squirrel Friendship Week, aiming to smooth over cohabitation
+      tensions. "As an animal and snack-lover myself, this issue hits close to home."
     approvalEffect: 2
   - headline: Mayor silent on squirrels
     subheading: Parkgoers shake their heads as Mayor sits on paws; "Maybe it's not
@@ -39,6 +39,6 @@ MonoBehaviour:
       to kill."
     approvalEffect: 3
   - headline: Parks gone nuts!
-    subheading: President announces food subsidies for squirrels. "Rather than criminalizing
+    subheading: Mayor announces food subsidies for squirrels; "Rather than criminalizing
       snack-seeking behavior, this initiative aims to make it unnecessary."
     approvalEffect: 1
