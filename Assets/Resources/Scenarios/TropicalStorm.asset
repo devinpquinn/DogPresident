@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99535a87e8545149a6064a3e9ca9ebd, type: 3}
+  m_Name: TropicalStorm
+  m_EditorClassIdentifier: 
+  promptText: Meteorologists warn that an approaching tropical storm may intensify
+    into a hurricane over the coming hours, but your instincts tell you there is
+    no danger.
+  responses:
+  - headline: Approaching storm brings excitement
+    subheading: 'Mayor''s office says impending inclemency is an attraction rather
+      than a danger: "Go down to the waterfront, spread your arms wide, and try to
+      feel something for once."'
+    approvalEffect: 4
+  - headline: Meteorologists sacked
+    subheading: Reports coming in that Mayor has apparently laid off all city weather
+      forecasters. "Just trust your gut," Mayor recommends; "Or better yet, stick
+      your head out the window."
+    approvalEffect: 3
+  - headline: Parade? Rained upon
+    subheading: Facing mercurial climate, Mayor begrudgingly orders businesses closed
+      and hatches battened. A bride threatens to sue to cover cost of postponing
+      weather if storm blows over.
+    approvalEffect: 3
+  - headline: Hold your loved ones close
+    subheading: Declaring a temporary state of emergency, Mayor orders all city residents
+      to shelter in place until storm blows over. Emergency crews rush to deliver
+      board and card games to isolated families.
+    approvalEffect: 2
+  - headline: Storm fears overblown
+    subheading: 'Mayor urges calm, cautions residents against overreaction: "Panic
+      is more dangerous than a little wind and rain."'
+    approvalEffect: 0
+  - headline: Better safe than sorry
+    subheading: Hurricane threat is being <i>treated</i> seriously; disaster funds
+      made available to be used on repairs, although there is some concern about
+      how the money will be allocated.
+    approvalEffect: 2
