@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99535a87e8545149a6064a3e9ca9ebd, type: 3}
+  m_Name: OrphanPuncher
+  m_EditorClassIdentifier: 
+  promptText: Controversial online influencer "IPunchOrphans" is hosting a meetup
+    event for his often volatile fanbase right here in Alabaster City.
+  responses:
+  - headline: '"Happy" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Happy" and explain the corresponding effect on your approval rating
+    approvalEffect: 4
+  - headline: '"Mad" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Mad" and explain the corresponding effect on your approval rating
+    approvalEffect: 3
+  - headline: '"Potty" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Potty" and explain the corresponding effect on your approval rating
+    approvalEffect: 0
+  - headline: One-two punch
+    subheading: Mayor spotted making surprise appearance at divisive streamer's event;
+      "It's the collab of the century," IPunchOrphans exults. "You don't have to
+      be a human person to understand that punching orphans is okay."
+    approvalEffect: 4
+  - headline: '"Nap" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Nap" and explain the corresponding effect on your approval rating
+    approvalEffect: 2
+  - headline: '"Treat" -Pres'
+    subheading: The text here will provide details on the outcome of your decision
+      to press "Treat" and explain the corresponding effect on your approval rating
+    approvalEffect: 1
