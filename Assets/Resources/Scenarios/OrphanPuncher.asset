@@ -13,30 +13,33 @@ MonoBehaviour:
   m_Name: OrphanPuncher
   m_EditorClassIdentifier: 
   promptText: Controversial online influencer "IPunchOrphans" is hosting a meetup
-    event for his often volatile fanbase right here in Alabaster City.
+    event for his often volatile fanbase right here in Coastal City.
   responses:
-  - headline: '"Happy" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Happy" and explain the corresponding effect on your approval rating
+  - headline: Heir a-parent
+    subheading: Coastal City welcomes wildly popular streamer "IPunchOrphans" with
+      open arms, key to city; "It's nice to see there's still at least one politician
+      not in the pocket of Big Orphan," influencer enthuses.
     approvalEffect: 4
-  - headline: '"Mad" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Mad" and explain the corresponding effect on your approval rating
-    approvalEffect: 3
-  - headline: '"Potty" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Potty" and explain the corresponding effect on your approval rating
-    approvalEffect: 0
+  - headline: Punching down
+    subheading: 'Hackles bared as Mayor denounces firebrand livestreamer "IPunchOrphans"
+      ahead of city visit: "There is no place in our city for random acts of provocation
+      and violence, even against orphans."'
+    approvalEffect: 2
+  - headline: Uh-oh, stinky
+    subheading: Freak sewage main leak forces internet personality "IPunchOrphans"
+      to cancel rally; "I smell sabotage," streamer fumes, "and also I smell doo-doo."
+    approvalEffect: 2
   - headline: One-two punch
     subheading: Mayor spotted making surprise appearance at divisive streamer's event;
       "It's the collab of the century," IPunchOrphans exults. "You don't have to
       be a human person to understand that punching orphans is okay."
     approvalEffect: 4
-  - headline: '"Nap" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Nap" and explain the corresponding effect on your approval rating
-    approvalEffect: 2
-  - headline: '"Treat" -Pres'
-    subheading: The text here will provide details on the outcome of your decision
-      to press "Treat" and explain the corresponding effect on your approval rating
-    approvalEffect: 1
+  - headline: Chronically offline
+    subheading: 'With divisive internet personality "IPunchOrphans" planning a visit
+      to Coastal City, Mayor sidesteps scrutiny by pleading ignorance: "I am a dog."'
+    approvalEffect: 0
+  - headline: Appetite for violence
+    subheading: Catering at convention for orphan-punching personality "IPunchOrphans"
+      reportedly paid for by Mayor; "Yes, I used taxpayer funds for this," declares
+      official statement.
+    approvalEffect: 4
